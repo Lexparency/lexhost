@@ -1,0 +1,47 @@
+<div class="w3-black">
+  <div class="w3-bar-item">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hover-gray w3-hide-large" title="Close Menu">
+      <img width="25px" height="25px" src="/static/icons/remove-white.svg" alt="{{ messenger.go_back }}">
+    </a>
+    <a class="w3-button w3-large" href="/">
+      <img src="/static/icons/logo_white.svg" alt="Logo" height="20px" width="20px">
+      {{ messenger.This_Domain }}
+    </a>
+    <button id="languageButtonDesktop" class="w3-item w3-button w3-hide-small w3-right" title="{{ messenger.languages }}">
+      <img width="35" height="35" src="/static/icons/languages.svg" alt="{{ messenger.languages }}">
+    </button>
+    <div id="languagesListDesktop" style="display:none">
+      {% include 'fragments/languages_list.html' %}
+    </div>
+    <span class="w3-hide-large w3-hide-medium w3-right" style="opacity:0">lexp</span>
+    {% if view_type == 'article' %}
+      {# No tooltipping on small devices #}
+      <button class="w3-item w3-button w3-right w3-hide-large w3-hide-medium lxp-sidebarswitch" title="{{ messenger.show_metadata }}">
+        <img width="30" height="30" src="/static/icons/metadata.svg" alt="{{ messenger.show_metadata }}">
+      </button>
+      <button class="w3-item w3-button w3-right w3-hide-large w3-hide-medium lxp-sidebarswitch w3-hide" title="{{ messenger.show_contentstable }}">
+        <img width="35" height="35" src="/static/icons/contentstable.svg" alt="{{ messenger.show_contentstable }}">
+      </button>
+      {# On Desktop and Tablets, show the tooltip #}
+      <button class="w3-item w3-button w3-right lexttip w3-hide-small lxp-sidebarswitch" title="{{ messenger.show_metadata }}">
+        <img width="30" height="30" src="/static/icons/metadata.svg" alt="{{ messenger.show_metadata }}">
+      </button>
+      <button class="w3-item w3-button w3-right lexttip w3-hide-small lxp-sidebarswitch w3-hide" title="{{ messenger.show_contentstable }}">
+        <img width="35" height="35" src="/static/icons/contentstable.svg" alt="{{ messenger.show_contentstable }}">
+      </button>
+    {% endif %}
+  </div>
+  <form
+    id="document-search"
+    class="w3-bar-item w3-padding w3-medium"
+    method="get"
+    action="/{{ cover.domain }}/{{ document_id }}/search"
+    data-hint="search this document using the specified keywords">
+    <input
+      title="{{ messenger.search_this_document }}"
+      placeholder="{{ messenger.search_this_document }} ..."
+      class="w3-input w3-round-large"
+      name="search_words"
+      type="text"{{ ' disabled' if toccordion is none}}>
+  </form>
+</div>

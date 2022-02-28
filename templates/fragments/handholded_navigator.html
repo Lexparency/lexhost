@@ -1,0 +1,32 @@
+<div id="handholdedNavigator" class="w3-bar-block w3-hide-large w3-border-bottom w3-margin-right">
+  <div class="w3-bar-item">
+    <a class="w3-left"
+       style="text-decoration: none"
+       href="/{{ cover.domain }}/{{ document_id }}{{ '/TOC' if version != '' else '' }}/{{ version }}">
+       {% if cover.id_human is defined %}
+         {{ cover.id_human }}
+       {% else %}
+         {{ cover.id_local }}
+       {% endif %}
+       {% if cover.pop_acronym is defined %}
+         ({{ cover.pop_acronym }})
+       {% endif %}
+    </a>
+    {% include 'fragments/in_force_sign.html' %}
+  </div>
+  <div class="w3-bar-item">
+    <div class="w3-left" style="padding-top: 10px">{{ document_title }}
+      {% if cover.pop_acronym is defined %}
+        ({{ cover.pop_acronym }})
+      {% endif %}
+    </div>
+  </div>
+  <div class="w3-bar-item w3-panel">
+    {% if article is defined %}
+      {% include 'fragments/neighbour_navigator.html' %}
+      {% include 'fragments/version_sign.html' %}
+    {% else %}
+      {% include 'fragments/pagination.html' %}
+    {% endif %}
+  </div>
+</div>

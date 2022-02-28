@@ -1,0 +1,6 @@
+<div>
+  <b>{{ title|safe }}</b>
+  {% for node in nodes %}
+    <p>{{ node.ordinate }} &mdash; {{ node.title }}</p>
+  {% endfor %}
+</div>

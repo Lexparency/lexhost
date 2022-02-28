@@ -1,0 +1,24 @@
+<div id="versionsList" style="display:none">
+  <h5>{{ messenger.versions_by_date }}</h5>
+  <div class="w3-bar-block" style="max-height:70vh;overflow-y:auto">
+    {% for v in versions %}
+      {% if v.loaded %}
+        {% if v.folder == version %}
+          <button class="w3-bar-item w3-button w3-theme-l3">
+            {{ v.display }}
+          </button>
+        {% else %}
+          <a href="/{{ cover.domain }}/{{ cover.id_local }}/{{ sub_id }}/{{ v.folder }}"
+             rel="nofollow"
+             class="w3-bar-item w3-button">
+            {{ v.display }}
+          </a>
+        {% endif %}
+      {% else %}
+        <button class="w3-bar-item w3-button w3-disabled" disabled>
+          {{ v.display }}
+        </button>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

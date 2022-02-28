@@ -1,0 +1,23 @@
+{% if enforced is not none or cover.in_force is defined %}
+  <button
+    class="lxp-dummy-button w3-round w3-right lexttip inForceSign"
+    {% if cover.in_force %}
+      title="{{ messenger.this_is_in_force }}"
+    {% else %}
+      title="{{ messenger.this_is_outdated }}"
+    {% endif %}
+  >
+    {{ messenger.status }}&nbsp;
+    <img
+      width="13px"
+      height="13px"
+      {% if cover.in_force %}
+        src="/static/icons/check-circle.svg"
+        alt="in force"
+      {% else %}
+        src="/static/icons/cross-circle.svg"
+        alt="not in force"
+      {% endif %}
+    >
+  </button>
+{% endif %}

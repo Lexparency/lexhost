@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+{% block body %}
+  {% include 'fragments/top_nav_base.html' %}
+  <div class="w3-content w3-padding-64" style="max-width: 900px">
+    <div class="w3-container" style="min-height: 70vh">
+      <h1 class="w3-margin-top">Lexparency Bot-API</h1>
+      <p>
+          Die Bot-API erlaubt eine einfache und maschinenlesbare Abfrage von kürzlich
+          aktualisierten Inhalten. Die API ist ReST-basiert und besteht aus zwei Teilen: die
+          „Recents“- und die Dokument- Abfrage.
+      </p>
+      <h2 class="w3-margin-top">1 Die Recents-Abfrage</h2>
+      Hierbei handelt es sich um ein GET-Request mit folgendem Format:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/recents.json?date_from=YYYY-MM-DD&page=P</div>
+      z.B.:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;"><a
+              rel="nofollow"
+              href="https://lexparency.de/_botapi/recents.json?date_from=2021-08-01"
+        >https://lexparency.de/_botapi/recents.json?date_from=2021-08-01</a></div>
+      wobei
+      <ul>
+        <li>
+          „YYYY-MM-DD“ einen Platzhalter für ein Datum darstellt ab welchem man die Updates abfragen möchte,
+        </li>
+        <li>
+          „P“ einen ganzahligen Wert für die Seite der Abfrage darstellt. Dies ist notwendig, falls man,
+          z.B., die Updates eines ganzen Monats abfragt. Da das gesamt Ergebnis nicht vollständig
+          mit einer einzigen Antwort zurückgegeben wird, sondern in Seiten aufgeteilt.
+        </li>
+      </ul>
+      Die Antwort ist ein JSON-Dokument. Das Schema kann unter folgender URL abgefragt werden:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;"><a
+              rel="nofollow"
+              href="https://lexparency.de/static/botapi_recents.schema.json"
+        >https://lexparency.de/static/botapi_recents.schema.json</a></div>
+      Eine Schema-Validierung findet Serverseitig statt.
+      <p>Folgende Graphik soll die einzelnen Bestandteile der Antwort erklären:</p>
+      <img alt="Response example" src="/static/botapi/i.png">
+
+      <h2>2 Die Dokument Abfrage</h2>
+      Hierüber erhält man die eigentlichen aktualisierten Inhalte – worüber man
+      über die Recents-Abfrage informiert wurde. Die Abfrage ist ein GET-Request
+      mit folgendem Format:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/&lt;CELEX&gt;.json</div>
+      z.B.:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;"><a
+              rel="nofollow"
+              href="https://lexparency.de/_botapi/32016R1675.json"
+        >https://lexparency.de/_botapi/32016R1675.json</a></div>
+      Die Antwort ist ein JSON-Dokument. Das zugehörige Schema kann unter folgender URL
+      abgefragt werden:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;"><a
+              rel="nofollow"
+              href="https://lexparency.de/static/botapi_doc.schema.json"
+        >https://lexparency.de/static/botapi_doc.schema.json</a></div>
+      Folgende Graphik soll die Zusammensetzung der Antwort erklären:
+      <img alt="Single document response" src="/static/botapi/ii.png">
+      <h3>2.1 Entsprechung zu den Suchtreffern auf deJure.org</h3>
+      <img alt="entsprechungen" src="/static/botapi/iii.png">
+
+      <h2>3 Single-Step Option</h2>
+        Statt die vollen aktualisierten Dokumente über die zwei Schritte abzufragen, kann man
+        auch direkt die Änderungen in der recents-Anfrage einbinden lassen – via des
+        Queryparameters „single_step“.
+        <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/recents.json?date_from=YYYY-MM-DD&page=P&single_step</div>
+        In dem Fall werden nicht alle Artikel je dokument ausgegeben, sondern nur diejenigen mit
+        einer Änderung. Die Art der Änderung wird in dem Attribute „transaction_type“ angegeben.
+      <img alt="Beispiel Single-step response" src="/static/botapi/iv.png">
+      <p>
+        In dem gezeigten Beispiel ist ein Artikel mit transaction_type = update dargestellt.
+        Folgende drei Ausprägungen für transaction_type sind vorgesehen:
+      </p>
+      <ul>
+        <li><span style="font-family: monospace">insert</span>: Artikel ist neu. Z.B. durch eine Änderungsvorschrift oder bei einem neuen
+Dokument.
+        </li>
+        <li><span style="font-family: monospace">update</span>: Artikel existiert bereits länger. Der Inhalt wurde jedoch durch eine
+Änderungsvorschrift geändert.
+        </li>
+        <li><span style="font-family: monospace">delete</span>: Artikel wird durch Änderung aufgehoben. In diesem Fall sind die Attribute
+body, name und title enthalten. Also ausschließlich url.
+        </li>
+      </ul>
+      <h2>4 Statusübersicht aller Dokumente</h2>
+      Die Bot-API bietet leider keine Auskunft, wenn ein Dokument vollständig außer Kraft
+      gesetzt wird, da das „außer-kraft-seit“ Prädikat von den Eur-Lex APIs leider nur
+      unvollständig abrufbar ist, und somit auch im Lexparency Datenmodell nicht zuverlässig
+      zum Filtern verwendet werden kann. Stattdessen kann man durch eine separate Abfrage
+      den status aller dokumente abfragen:
+      <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/dbmap.json</div>
+      Die Antwort ist ein JSON Dokument von der folgenden Form:
+      <img alt="Response der Status Abfrage" src="/static/botapi/v.png">
+    </div>
+  </div>
+  {% include 'fragments/footer_base.html' %}
+{% endblock %}

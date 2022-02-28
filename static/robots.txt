@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /eu/search/
+Disallow: /outbound/

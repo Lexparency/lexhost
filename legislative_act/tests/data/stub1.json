@@ -1,0 +1,62 @@
+{
+  "document": [
+    {
+      "doc_type": "versionsmap",
+      "availabilities": [
+        {
+          "version": "initial",
+          "date_document": "2016-04-27",
+          "date_received": "2020-06-15",
+          "available": false
+        }
+      ],
+      "exposed_and_hidden": [
+        {
+          "sub_id": "COV",
+          "hidden_version": "initial",
+          "exposed_versions": [
+            "initial"
+          ]
+        }
+      ]
+    },
+    {
+      "doc_type": "cover",
+      "pop_title": "Breakfast Regulation",
+      "source_url": "http://example.com/stub1",
+      "is_about": [
+        "Personal data",
+        "Consumer rights"
+      ],
+      "title": "On breakfast requirements for prudential gastronomy management",
+      "passed_by": [
+        "European Parliament",
+        "Council of the European Union"
+      ],
+      "source_iri": "http://example.com/stub1/idi",
+      "abstract": {
+        "in_force": true,
+        "serial_number": 1,
+        "id_local": "stub1",
+        "version": [
+          "initial"
+        ],
+        "domain": "eu",
+        "is_latest": true
+      },
+      "cites": [
+        {
+          "href": "http://example.com/document1",
+          "text": "Document one",
+          "title": "First Document Ever"
+        }
+      ],
+      "amends": [
+        {
+          "href": "http://example.com/document2",
+          "text": "Document two"
+        }
+      ]
+    }
+  ]
+}

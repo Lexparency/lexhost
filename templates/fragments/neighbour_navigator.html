@@ -1,0 +1,40 @@
+{% if neighbours.left is not none %}
+  <a href="/{{ cover.domain }}/{{ document_id }}/{{ neighbours.left.id }}/{{ version }}"
+     title="{{ neighbours.left.ordinate }}" class="w3-button w3-round lexttip">
+    <img
+      width="12px"
+      height="12px"
+      src="/static/icons/chevron-left-grey.svg"
+      aria-hidden="true"
+      alt="{{ messenger.previous }}">
+  </a>
+{% endif %}
+<span id="leafButton" class="w3-button">
+  {{ article.ordinate }}
+</span>
+{% if neighbours.right is not none %}
+  <a href="/{{ cover.domain }}/{{ document_id }}/{{ neighbours.right.id }}/{{ version }}"
+     title="{{ neighbours.right.ordinate }}" class="w3-button w3-round lexttip">
+    <img
+      width="12px"
+      height="12px"
+      src="/static/icons/chevron-right-grey.svg"
+      aria-hidden="true"
+      alt="{{ messenger.next }}">
+  </a>
+{% endif %}
+
+<div id="goToLeaf" class="w3-container" style="display: none">
+    <form class="leafForm"
+          method="get"
+          action="/{{ cover.domain }}/{{ document_id }}/"
+          data-basic-action="/{{ cover.domain }}/{{ document_id }}/ART_">
+        <label>{{messenger.goto_article}} </label>
+        <input class="w3-input w3-round-small lex-input-pub-date"
+               name="articleNumber"
+               style="width: 3em"
+               type="text"
+               title="{{messenger.goto_article}}"
+        >
+    </form>
+</div>

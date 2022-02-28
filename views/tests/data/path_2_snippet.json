@@ -1,0 +1,40 @@
+{
+  "path_2_snippet": [
+    {
+      "path": "/eu/32013R0575/TOC/?snippet=toc-PRT_1",
+      "snippet": "<div>\n  <b>Regulation (EU) No 575/2013 of the European Parliament and of the Council of 26 June 2013 on prudential requirements for credit institutions and investment firms and amending Regulation (EU) No 648/2012  Text with EEA relevance</b>\n  \n    <p>PART ONE &mdash; GENERAL PROVISIONS</p>\n  \n</div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_1/?snippet=b",
+      "snippet": "<div><p data-title=\"(b)\" id=\"b\"> requirements limiting large exposures; </p> </div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_1/?snippet=d",
+      "snippet": "<div><p data-title=\"(d)\" id=\"d\"> reporting requirements related to points (a), (b) and (c) and to leverage; <ol class=\"roman\"><li data-title=\"(i)\" id=\"d-i\">On One hand Roman numbers are cool.</li> <li data-title=\"(ii)\" id=\"d-ii\">On the other hand, they suck.</li> </ol></p> </div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_1/?snippet=d-ii",
+      "snippet": "<div><p data-title=\"(ii)\" id=\"d-ii\">On the other hand, they suck.</p> </div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_1/?snippet=z",
+      "snippet": "<div><b>Scope</b><p class=\"normal\" id=\"p0\"> This Regulation lays down uniform rules concerning general prudential requirements that institutions supervised under <a data-content-heading=\"Directive 2013/36/EU\" href=\"/eu/32013L0036/\"> Directive 2013/36/EU </a> shall comply with in relation to the following items: </p> <p>...</p></div>"
+    },
+    {
+      "path": "/eu/32013R0575/TOC/?snippet=toc-PRT_1-TIT_I",
+      "snippet": "<div>\n  <b>Regulation (EU) No 575/2013 of the European Parliament and of the Council of 26 June 2013 on prudential requirements for credit institutions and investment firms and amending Regulation (EU) No 648/2012  Text with EEA relevance</b>\n  \n    <p>PART ONE &mdash; GENERAL PROVISIONS</p>\n  \n    <p>TITLE I &mdash; SUBJECT MATTER, SCOPE AND DEFINITIONS</p>\n  \n</div>"
+    },
+    {
+      "path": "/eu/32013R0575/PRE/?snippet=0",
+      "snippet": "<div><b>Regulation (EU) No 575/2013 of the European Parliament and of the Council of 26 June 2013 on prudential requirements for credit institutions and investment firms and amending Regulation (EU) No 648/2012  Text with EEA relevance</b></div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_2/?snippet=0",
+      "snippet": "<div><b>Supervisory powers</b><p class=\"normal\" id=\"1\"> For the purposes of ensuring compliance with this Regulation, competent authorities shall have the powers and shall follow the procedures set out in <a data-content-heading=\"Directive 2013/36/EU\" href=\"/eu/32013L0036/\"> Directive 2013/36/EU </a> . </p> <p>...</p></div>"
+    },
+    {
+      "path": "/eu/32013R0575/ART_2/?snippet=1",
+      "snippet": "<div><p class=\"normal\" id=\"1\"> For the purposes of ensuring compliance with this Regulation, competent authorities shall have the powers and shall follow the procedures set out in <a data-content-heading=\"Directive 2013/36/EU\" href=\"/eu/32013L0036/\"> Directive 2013/36/EU </a> . </p> </div>"
+    }
+  ]
+}

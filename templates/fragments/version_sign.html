@@ -1,0 +1,30 @@
+{% if toccordion is not none %}
+  {% if current_version %}
+    <button class="w3-button w3-round w3-right lexttip versionSign" title="{{ messenger.this_is_latest }}">
+      {{ messenger.version }}&nbsp;
+      <img
+        width="13px"
+        height="13px"
+        src="/static/icons/check-circle.svg"
+        alt="{{ messenger.latest }}">
+    </button>
+  {% elif version_is_future_version %}
+    <button class="w3-button w3-round w3-right lexttip versionSign" title="{{ messenger.this_is_upcoming }}">
+      {{ messenger.version }}&nbsp;
+      <img
+        width="13px"
+        height="13px"
+        src="/static/icons/exclamation-triangle-solid.svg"
+        alt="{{ messenger.old_version }}">
+    </button>
+  {% else %}
+    <button class="w3-button w3-round w3-right lexttip versionSign" title="{{ messenger.this_is_outdated }}">
+      {{ messenger.version }}&nbsp;
+      <img
+        width="13px"
+        height="13px"
+        src="/static/icons/cross-circle.svg"
+        alt="{{ messenger.old_version }}">
+    </button>
+  {% endif %}
+{% endif %}

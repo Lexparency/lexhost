@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+{% block body %}
+  {% include 'fragments/top_nav_base.html' %}
+  <div class="w3-content w3-padding-64" style="max-width: 700px">
+    <div class="w3-container" style="min-height: 70vh">
+      <h1 class="w3-margin-top">Häufig gestellte Fragen</h1>
+      <h3 class="w3-margin-top">Welche Dokumente werden von Lexparency bereitgestellt</h3>
+      <ul>
+        <li>Verordnungen</li>
+        <li>Richtlinien</li>
+        <li>Entscheidungen</li>
+        <li>Rahmenbeschlüsse</li>
+      </ul>
+      <h3 class="w3-margin-top"></h3>
+    </div>
+  </div>
+  {% include 'fragments/footer_base.html' %}
+{% endblock %}

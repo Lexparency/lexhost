@@ -1,0 +1,18 @@
+{% extends "fragments/top_nav_base.html" %}
+
+{% block extra_navs %}
+  <button id="shareButton" class="w3-item w3-button w3-right" title="{{ messenger.share }}">
+    <img width="35" height="35" src="/static/icons/share-alt.svg" alt="{{ messenger.share }}">
+  </button>
+  <button id="languageButton" class="w3-item w3-button w3-right" title="{{ messenger.languages }}">
+    <img width="35" height="35" src="/static/icons/languages.svg" alt="{{ messenger.languages }}">
+  </button>
+  <div id="languagesList" style="display:none">
+    {% include 'fragments/languages_list.html' %}
+  </div>
+  <div id="shareList" style="display: none">
+    <div class="w3-padding-small lxp-shareList">
+      {% include 'fragments/share_list_1.html' %}
+    </div>
+  </div>
+{% endblock %}

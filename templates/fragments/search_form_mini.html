@@ -1,0 +1,22 @@
+<form method="get" class="w3-medium" action="{{ r_path }}">
+  <div id="search-words-bar" class="w3-bar w3-border w3-round-large">
+    <a class="w3-bar-item w3-button w3-left w3-border-right lexttip"
+       href="{{ r_path }}"
+       title="{{ messenger.go_to_advanced_search }}">
+      <img width="16px" height="16px" src="/static/icons/filter.svg" alt="{{ messenger.filter }}">
+    </a>
+    <input id="search-words-form"
+           class="w3-bar-item w3-input"
+           {{ form.search_words|safe }}
+           title="{{ messenger.enter_search_words }}"
+           placeholder="{{ messenger.search_our_database }} ..."
+           name="search_words"
+           type="text" maxlength="128" minlength="1">
+    <button id="search-form-submit" class="w3-bar-item w3-button w3-right" type="submit">
+      <img width="16px" height="16px" src="/static/icons/search.svg" alt="{{ messenger.search }}">
+    </button>
+    <button id="erase-search-words" class="w3-bar-item w3-button w3-right" type="button">
+      <img width="16px" height="16px" src="/static/icons/remove-black.svg" alt="X">
+    </button>
+  </div>
+</form>

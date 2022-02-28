@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+	  "words": "eggs",
+	  "result": {
+        "total": 2,
+        "total_pages": 1,
+        "pages": [
+          ["x", 1]
+        ],
+        "current_page": 1,
+        "hits": [
+          {
+            "id_human": "Article 1, First Recepies",
+            "title": "Spanish omelette",
+            "highlights": "... potatoes <mark>eggs</mark> onion olive oil ...",
+            "href": "/eu/32010R0001/ART_1/"
+          },
+          {
+            "id_human": "Article 2, First Recepies",
+            "title": "Stargazing pie",
+            "highlights": "... 4 Fishes, flour, <mark>eggs</mark>, baking powder ...",
+            "href": "/eu/32010R0001/ART_2/"
+          }
+        ]
+      }
+	},
+    {
+	  "words": "pie",
+	  "result": {
+        "total": 1,
+        "total_pages": 1,
+        "pages": [
+          ["x", 1]
+        ],
+        "current_page": 1,
+        "hits": [
+          {
+            "id_human": "Article 2, First Recepies",
+            "title": "Stargazing <mark>pie</mark>",
+            "highlights": null,
+            "href": "/eu/32010R0001/ART_2/"
+          }
+        ]
+      }
+	}
+  ]
+}

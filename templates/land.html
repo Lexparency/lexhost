@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block meta %}
+  <link rel="canonical" href="https://{{ messenger.this_domain }}/">  {# So search engines strip off possible url-parameters from social network sites etc. #}
+
+  <meta property="og:title" content="Lexparency" />
+  <meta property="og:description" content="{{ messenger.og_description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://{{ messenger.this_domain }}" />
+  <meta property="og:image" content="https://{{ messenger.this_domain }}/static/Lexparency_logo.png" />
+{% endblock %}
+
+{% block body %}
+  {# Navbar #}
+  {% include 'fragments/top_nav_land.html' %}
+
+  <div id="mainBodyLand" class="w3-content w3-padding-64" style="max-width: 800px; min-height: 95vh">
+    <div class="w3-container">
+      <div class="w3-panel w3-padding-16 w3-leftbar w3-theme-l5">
+        <div class="w3-row">
+          <div class="w3-container lxp-sixth w3-hide-small">
+            <img src="/static/lexparency_transparent.svg"
+              alt="Lexparency Logo"
+              width="100px" height="100px">
+          </div>
+          <h1 class="w3-container w3-twothird w3-right" style="padding-top: 20px">
+            <span>{{ messenger.welcome }}</span>
+          </h1>
+        </div>
+        <div class="w3-row w3-margin-top">
+          <div class="w3-twothird w3-container">
+            <h2 class="w3-large">{{ messenger.global_description }}</h2>
+            <ul class="w3-ul" id="landing-slider" style="width: 60%">
+              {% for message in messenger.marketing_features %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="w3-container w3-third w3-right-align w3-hide-small">
+            <a
+              href="https://op.europa.eu/en/web/eudatathon/"
+              title="{{ messenger.eu_datathon_info }}"
+              class="lexttip">
+              <img
+                src="/static/2018 - eudatathon_TWITTER-winner.png"
+                alt="{{ messenger.eu_datathon_info }}"
+                style="max-width:90%">
+            </a>
+          </div>
+        </div>
+      </div>
+      {% include 'fragments/search_form_mini.html' %}
+      <hr>
+      <div class="w3-border" id="featured">
+        <div id="featured-tabs" class="w3-row w3-large">
+          <button class="w3-third lxp-dummy-button w3-bottombar w3-border-bottom" data-ref="featured-acts">{{ messenger.featured_acts }}</button>
+          <button class="w3-third w3-button w3-border-bottom w3-border-right w3-border-left" data-ref="covid-acts">{{ messenger.covid_acts }}</button>
+          <button class="w3-third w3-button w3-border-bottom" data-ref="recent-acts">{{ messenger.recent_acts }}</button>
+        </div>
+        <div class="w3-row w3-padding-8 w3-margin-top w3-row-padding">
+          <div id="featured-acts" class="land-featured">
+            {% for item in featured_acts %}
+              <div class="w3-col l4 m6 s12">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <a href="/eu/{{ item.id_local }}">
+                  {{ item.title }}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+          <div id="covid-acts" class="w3-hide land-featured">
+            {% for item in covid_acts %}
+              <div class="w3-col">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <a href="{{ item.href }}">{{ item.title|safe }}</a>
+              </div>
+            {% endfor %}
+            <div class="w3-col">
+              <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+              <a rel="nofollow" href="/eu/search?search_words=covid&page=2">{{ messenger.more }} ...</a>
+            </div>
+          </div>
+          <div id="recent-acts" class="w3-hide land-featured">
+            {% for item in recent_acts %}
+              <div class="w3-col w3-threequarter">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <a href="{{ item.href }}">{{ item.title|safe }}</a>
+              </div>
+              {% if item.transaction_type == 'new' %}
+                <div class="w3-col w3-quarter w3-right-align">({{ messenger.new_act }})</div>
+              {% else %}
+                <div class="w3-col w3-quarter w3-right-align">({{ messenger.new_consolidated }})</div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="supportOptionsPanelContainer" class="w3-margin-top">
+    <div id="supportOptionsPanel" class="w3-theme-l6 w3-border-left" style="width:160px;height:600px;">
+     {% include 'fragments/panel_right_support_options.html' %}
+    </div>
+  </div>
+
+  <div id="supportOptionsSmall" class="w3-hide-large w3-hide-medium w3-theme-l6 w3-border-top" style="width:100%;height:140px;">
+    {% include 'fragments/panel_bottom_support_options.html' %}
+  </div>
+  {% include 'fragments/footer_base.html' %}
+{% endblock %}
+
+{% block script %}
+  <!-- build:js inline ../static/js/slick.min.js -->
+    <script type="text/javascript" src="/static/js/slick.min.js"></script>
+  <!-- /build -->
+  <script type="text/javascript">
+    $(function() {
+      $('#erase-search-words').click(function (e) {
+          $('#search-words-form').val(undefined);
+          e.preventDefault();
+      });
+      tippy('.lexttip', {
+        arrow: true
+      });
+      tippy('#languageButton', {
+        arrow: true,
+        html: '#languagesList',
+        trigger: 'click',
+        placement: 'bottom',
+        interactive: true
+      });
+      tippy('#shareButton', {
+        arrow: true,
+        html: '#shareList',
+        trigger: 'click',
+        placement: 'bottom',
+        interactive: true
+      });
+      $('#landing-slider').slick({
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
+        speed: 1500
+      });
+      $('#featured-tabs > button').on('click', function (e) {
+        var target_tab = $(this);
+        var target_id = target_tab.attr('data-ref');
+        var previous_tab = $('#featured-tabs > .lxp-dummy-button');
+        var previous_id = previous_tab.attr('data-ref');
+        var target_content = $('#' + target_id);
+        var previous_content = $('#' + previous_id);
+        previous_tab.toggleClass('w3-button').toggleClass('lxp-dummy-button').toggleClass('w3-bottombar');
+        target_tab.toggleClass('w3-button').toggleClass('lxp-dummy-button').toggleClass('w3-bottombar');
+        previous_content.toggleClass('w3-hide');
+        target_content.toggleClass('w3-hide');
+      });
+    });
+  </script>
+{% endblock script %}

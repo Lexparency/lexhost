@@ -1,0 +1,44 @@
+{% if nationals.article %}
+  <div class="w3-card-2 w3-margin w3-border-theme">
+    <header class="w3-container w3-theme-l4">
+      <h4 class="w3-medium">{{ messenger.backref_heading }}</h4>
+    </header>
+    <div class="w3-bar-block">
+      {% for national in nationals.article %}
+        <div class="w3-bar-item w3-theme-light">
+          {% if national.country_name == 'BLOG' %}
+            {{ messenger.blogosphere }}
+          {% else %}
+            {{ messenger.backref_paragraphs_heading }} &mdash; {{ national.country_name }}
+          {% endif %}
+        </div>
+        <ul class="w3-bar-item w3-ul">
+          {% for target in national.targets %}
+            {% if target.platforms|length > 1 %}
+              <li style="text-indent: 0.5em">
+                {% if target.title is not none %}
+                  {{ target.text }} &ndash; {{ target.title }}:&nbsp;
+                {% else %}
+                  {{ target.text }}:&nbsp;
+                {% endif %}
+                {% for platform in target.platforms %}
+                  <a href="{{ platform.href }}" rel="{{ platform.rel }}">{{ platform.name }}</a>{{ "," if not loop.last }}
+                {% endfor %}
+              </li>
+            {% else %}
+              <li style="text-indent: 0.5em">
+                <a href="{{ target.platforms.0.href }}" rel="{{ target.platforms.0.rel }}">
+                  {{ target.text }}
+                </a>
+                {% if target.title %}
+                  &ndash;
+                  {{ target.title }}
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

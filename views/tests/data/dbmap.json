@@ -1,0 +1,41 @@
+{
+  "date": "2020-02-07",
+  "hits": [
+    {
+      "id_local": "32019R1981",
+      "in_force": null,
+      "versions": [
+        {
+          "available": false,
+          "date_document": "2019-11-28",
+          "version": "initial"
+        }
+      ]
+    },
+    {
+      "id_local": "32013R0575",
+      "in_force": true,
+      "versions": [
+        {
+          "available": true,
+          "date_document": "2013-06-26",
+          "version": "initial"}]},
+    {
+      "id_local": "breg",
+      "in_force": true,
+      "versions": [
+        {
+          "available": true,
+          "date_document": "2016-04-27",
+          "version": "initial"
+        },
+        {
+          "available": false,
+          "date_document": "2019-10-01",
+          "version": "20191001"
+        }
+      ]
+    }
+  ],
+  "total": 3
+}

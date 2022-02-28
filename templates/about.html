@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+{% block body %}
+  {% include 'fragments/top_nav_base.html' %}
+  {% if messenger.language_2 == 'de' %}
+    <div class="w3-content w3-padding-64" style="max-width: 700px">
+      <div class="w3-container" style="min-height: 70vh">
+        <h1 class="w3-margin-top">Über Lexparency.de</h1>
+        <p>
+          Lexparency.de ist eine private Initiative.
+          Es ist unser Anspruch, höchste Qualitätsstandards, bei unserer Textenaufbereitung zu bieten.
+          Die zertifizierten Quellen für die zur Verfügung gestellten Rechtsinhalte werden jedoch ausschließlich von
+            <a rel="nofollow" href="https://eur-lex.europa.eu/homepage.html">eur-lex</a>.
+          zur Verfügung gestellt.
+          Weitere Infos finden Sie unter den <a rel="nofollow" href="/{{ messenger.data_protection_path }}">Nutzungsbedingungen</a>.
+        </p>
+        <p>
+          Jede Art von Feedback ist mehr als willkommen. Wenn Sie Vorschläge zur Verbesserung von Lexparency.de haben,
+            <a rel="nofollow" href="mailto:mail@lexparency.de">kontaktieren</a> Sie uns gerne.
+        </p>
+        <hr class="w3-padding">
+        <h2 class="w3-margin-top">Kontakt</h2>
+        <table class="w3-table w3-striped">
+          <tr>
+           <td>
+             Verantwortlicher
+           </td>
+           <td>
+             Dr. Martin Heimsoth
+           </td>
+          </tr>
+          <tr>
+            <td>
+              Tel.
+            </td>
+            <td>
+              (+49) 151 12361993
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email
+            </td>
+            <td>
+              <a style="text-decoration: None" href="mailto:mail@lexparency.de">
+                mail@lexparency.org
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  {% elif messenger.language_2 == 'en' %}
+    <div class="w3-content w3-padding-64" style="max-width: 700px">
+      <div class="w3-container" style="min-height: 70vh">
+        <h1>About Lexparency.org</h1>
+        <p>
+          Lexparency.org is a private initiative. We provide the content of european laws and decisions &mdash; i.e.
+          EU acts. It is our claim to maintain very high quality standards, including thorough testing procedures.
+          Nevertheless, the certified sources for the provided legal content is only provided by
+          <a rel="nofollow" href="https://eur-lex.europa.eu/homepage.html">eur-lex</a>.
+        </p>
+        <p>
+          Any kind of feedback is more than welcome. Therefore, if you have any suggestion to improve Lexparency.org,
+          please do not hesitate to <a rel="nofollow" href="mailto:mail@lexparency.org">contact us</a>.
+        </p>
+        <hr>
+        <h2>Contact</h2>
+        <table class="w3-table w3-striped">
+          <tr>
+           <td>
+             Responsible
+           </td>
+           <td>
+             Dr. Martin Heimsoth
+           </td>
+          </tr>
+          <tr>
+            <td>
+              Phone
+            </td>
+            <td>
+              (+49) 151 12361993
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email
+            </td>
+            <td>
+              <a style="text-decoration: None" href="mailto:mail@lexparency.org">mail@lexparency.org</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  {% elif messenger.language_2 == 'es' %}
+    <div class="w3-content w3-padding-64" style="max-width: 700px">
+      <div class="w3-container" style="min-height: 70vh">
+        <h1>Acerca de Lexparency.es</h1>
+        <p>
+          Lexparency.de es una iniciativa privada. Nuestro objetivo es ofrecer
+            los más altos estándares de calidad en la preparación de textos.
+            Sin embargo, los contenidos legales certficadas están exclusivamente
+            proveido desde <a rel="nofollow" href="https://eur-lex.europa.eu/homepage.html">eur-lex</a>.
+            Se puede encontrar más información en los términos de uso.
+        </p>
+        <p>
+          Cualquier tipo de comentario es más que bienvenido. Si tiene alguna
+            sugerencia para mejorar Lexparency.de,
+            <a rel="nofollow" href="mailto:mail@lexparency.org">contáctenos</a>.
+        </p>
+        <hr>
+        <h2>Contacto</h2>
+        <table class="w3-table w3-striped">
+          <tr>
+           <td>
+             Responsable
+           </td>
+           <td>
+             Dr. Martin Heimsoth
+           </td>
+          </tr>
+          <tr>
+            <td>
+              Teléfono
+            </td>
+            <td>
+              (+49) 151 12361993
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email
+            </td>
+            <td>
+              <a style="text-decoration: None" href="mailto:mail@lexparency.org">mail@lexparency.org</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  {% endif %}
+  {% include 'fragments/footer_base.html' %}
+{% endblock %}

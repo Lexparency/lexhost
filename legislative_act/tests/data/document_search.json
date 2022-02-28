@@ -1,0 +1,33 @@
+{
+  "expectations": [
+    {
+      "words": "coffee",
+      "id_local": "32010R0001",
+      "result": {
+        "total": 0,
+        "pages": [],
+        "total_pages": 0,
+        "current_page": 1,
+        "hits": []
+      }
+    },
+    {
+      "words": "onion",
+      "id_local": "32010R0001",
+      "result": {
+        "total": 1,
+        "total_pages": 1,
+        "pages": [["x", 1]],
+        "current_page": 1,
+        "hits": [
+          {
+            "id_human": "Article 1",
+            "title": "Spanish omelette",
+            "highlights": "... potatoes eggs <mark>onion</mark> olive oil ...",
+            "href": "/eu/32010R0001/ART_1/"
+          }
+        ]
+      }
+    }
+  ]
+}

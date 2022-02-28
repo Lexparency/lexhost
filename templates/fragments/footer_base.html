@@ -1,0 +1,17 @@
+<footer>
+  <div id="shares" class="w3-container w3-theme-l2 w3-padding-32 w3-xlarge lxp-shareList">
+    <a rel="nofollow" href="mailto:mail@{{ messenger.this_domain }}">
+      <img width="25px" height="25px" src="/static/icons/envelope.svg" alt="Email">
+    </a>
+    {% include 'fragments/share_list_1.html' %}
+    <span class="w3-right w3-medium w3-margin-left">
+      <a rel="nofollow" href="/{{ messenger.impress_path }}" class="w3-margin-left">{{ messenger.about }}</a>
+      <a rel="nofollow" href="/{{ messenger.data_protection_path }}" class="w3-margin-left">{{ messenger.data_protection_short_title }}</a>
+      <a target="_blank" style="target-new: tab;" rel="nofollow" href="https://shop.spreadshirt.de/lexparency/" title="{{ spreadshirt_shop_title }}" class="w3-margin-left">Shop</a>
+      <br>
+      <a class="w3-margin-left" href="#" id="changeCookiesPreferences">{{ messenger.privacy_settings_link_text }}</a>
+    </span>
+  </div>
+  {% block footer_foot %}
+  {% endblock %}
+</footer>

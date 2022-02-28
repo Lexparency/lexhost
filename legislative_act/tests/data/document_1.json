@@ -1,0 +1,266 @@
+{
+  "data": [
+    {
+      "_id": "eu-dummy1-COV-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "cover",
+        "date_applicability": "2017-02-03",
+        "title": "On breakfast requirements for prudential gastronomy management",
+        "source_url": "http://example.com/dummy1",
+        "source_iri": "http://example.com/dummy1/idi",
+        "passed_by": ["Council of the European Union", "European Parliament"],
+        "is_about": ["Personal data", "Consumer rights"],
+        "pop_title": "Breakfast Regulation",
+        "score_multiplier": 6,
+        "cites": [{"href": "http://example.com/document1", "title": "First Document Ever", "text": "Document one"}],
+        "amends": [{"href": "http://example.com/document2", "text": "Document two"}]
+      }
+    },
+    {
+      "_id": "eu-dummy1-PRE-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "preamble",
+        "score_multiplier": 6,
+        "body": {
+          "dressed": "<p>This is the Preamble.</p> <ol class=\"lxp-recitals\"/> have adopted the following act. <div class=\"article-footer\"> <p class=\"footnote\" id=\"note_4\"> This is the footnote. </p> </div>",
+          "stripped": "This is the Preamble. have adopted the following act. This is the footnote."
+        },
+        "recitals": [
+          {
+            "body": {
+              "dressed": "We think that this legislation is necessary, just because",
+              "stripped": "We think that this legislation is necessary, just because"
+            }
+          },
+          {
+            "body": {
+              "dressed": "Whoever thinks that this is a stupid act is stupid self.",
+              "stripped": "Whoever thinks that this is a stupid act is stupid self."
+            }
+          },
+          {
+            "inferred_title": "Questionable content",
+            "body": {
+              "dressed": "What are recitals good for anyway?",
+              "stripped": "What are recitals good for anyway?"
+            }
+          },
+          {
+            "body": {
+              "dressed": "This is just for testing references to footnotes<a href=\"#note_4\"/>",
+              "stripped": "This is just for testing references to footnotes"
+            }
+          }
+        ],
+        "ordinate": "Preamble"
+      }
+    },
+    {
+      "_id": "eu-dummy1-ART_1-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "article",
+        "score_multiplier": 6,
+        "heading": {
+          "title": "Subject Matter and Scope",
+          "ordinate": "Article 1"
+        },
+        "body": {
+          "stripped": "This regulation tells you what to eat in the morning.",
+          "dressed": "<p>This regulation tells you what to eat in the morning.</p>"
+        }
+      }
+    },
+    {
+      "_id": "eu-dummy1-ART_2-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "article",
+        "score_multiplier": 6,
+        "heading": {
+          "title": "Definitions",
+          "ordinate": "Article 2"
+        },
+        "body": {
+          "stripped": "For the purpose of this regulation, the following definition shall apply The term citizen refers to any person with at least one nationality of an EU member state and whose permanent residence is in any member state. Breakfast denotes the meal citizens are having in the morning. It is sometimes als referred to as disjune.",
+          "dressed": "<p>For the purpose of this regulation, the following definition shall apply</p> <ul><li data-title=\"(1)\" id=\"1\" class=\"lxp-definition\"> The term <span class=\"lxp-definition-term\">citizen</span> refers to any person with at least one nationality of an EU member state and whose permanent residence is in any member state. </li> <li data-title=\"(1)\" id=\"2\" class=\"lxp-definition\"> <span class=\"lxp-definition-term\">Breakfast</span> denotes the meal citizens are having in the morning. It is sometimes als referred to as <span class=\"lxp-definition-term\">disjune</span>. </li> </ul>"
+        }
+      }
+    },
+    {
+      "_id": "eu-dummy1-ART_3-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "article",
+        "score_multiplier": 6,
+        "heading": {
+          "title": "Final",
+          "ordinate": "Article 3"
+        },
+        "body": {
+          "stripped": "This law shall be applicable from February 3rd 2017 onwards.",
+          "dressed": "<p> This law shall be applicable from <span property=\"eli:date_applicability\" content=\"2017-02-03\" datatype=\"xsd:date\">February 3rd 2017</span> onwards. </p>"
+        }
+      }
+    },
+    {
+      "_id": "eu-dummy1-FIN-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "article",
+        "score_multiplier": 6,
+        "heading": {
+          "ordinate": "Final"
+        },
+        "body": {
+          "stripped": "Actually, article 3 was not the actual final. But this is.",
+          "dressed": "<p> Actually, <a href=\"/eu/dummy1/ART_3/\">article 3</a> was not the actual final. But this is. </p>"
+        }
+      }
+    },
+    {
+      "_id": "eu-dummy1-TOC-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "doc_type": "contentstable",
+        "score_multiplier": 6,
+        "table": [
+          {
+            "locator": "PRE",
+            "heading": {
+              "ordinate": "Preamble"
+            }
+          },
+          {
+            "locator": "CHP_1",
+            "heading": {
+              "ordinate": "Chapter 1",
+              "title": "General purpose and scope"
+            },
+            "children": [
+              "ART_1", "ART_2"
+            ]
+          },
+          {
+            "locator": "ART_1",
+            "heading": {
+              "ordinate": "Article 1",
+              "title": "Subject Matter and Scope"
+            }
+          },
+          {
+            "locator": "ART_2",
+            "heading": {
+              "title": "Definitions",
+              "ordinate": "Article 2"
+            }
+          },
+          {
+            "locator": "ART_3",
+            "heading": {
+              "title": "Final",
+              "ordinate": "Article 3"
+            }
+          },
+          {
+            "locator": "FIN",
+            "heading": {
+              "ordinate": "Final"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "_id": "eu-dummy1-DEF_ART_2_1-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "terms": ["citizen"],
+        "doc_type": "definition",
+        "score_multiplier": 6,
+        "body": {
+          "dressed": "The term <span class=\"lxp-definition-term\">citizen</span> refers to any person with at least one nationality of an EU member state and whose permanent residence is in any member state.",
+          "stripped": "The term citizen refers to any person with at least one nationality of an EU member state and whose permanent residence is in any member state."
+        }
+      }
+    },
+    {
+      "_id": "eu-dummy1-DEF_ART_2_2-initial",
+      "_source": {
+        "abstract": {
+          "domain": "eu",
+          "id_local": "dummy1",
+          "version": ["initial"],
+          "serial_number": 1,
+          "in_force": true,
+          "is_latest": true
+        },
+        "terms": ["Breakfast", "disjune"],
+        "doc_type": "definition",
+        "score_multiplier": 6,
+        "body": {
+          "dressed": "<span class=\"lxp-definition-term\">Breakfast</span> denotes the meal citizens are having in the morning. It is sometimes als referred to as <span class=\"lxp-definition-term\">disjune</span>.",
+          "stripped": "Breakfast denotes the meal citizens are having in the morning. It is sometimes als referred to as disjune."
+        }
+      }
+    }
+  ]
+}

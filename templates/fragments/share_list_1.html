@@ -1,0 +1,14 @@
+{% if url is defined %}
+  <a target="_blank" style="target-new: tab;" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}">
+    <img width="25px" height="25px" src="/static/icons/xing.svg" alt="Xing">
+  </a>
+  <a target="_blank" style="target-new: tab;" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}">
+    <img width="25px" height="25px" src="/static/icons/linkedIn.svg" alt="LinkedIn">
+  </a>
+  <a target="_blank" style="target-new: tab;" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}">
+    <img width="25px" height="25px" src="/static/icons/facebook.svg" alt="facebook">
+  </a>
+  <a target="_blank" style="target-new: tab;" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}">
+    <img width="25px" height="25px" src="/static/icons/twitter.svg" alt="twitter">
+  </a>
+{% endif %}

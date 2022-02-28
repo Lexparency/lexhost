@@ -1,0 +1,119 @@
+<form method="get" class="w3-medium" action="{{ r_path }}">
+  <div id="search-words-bar" class="w3-bar w3-border w3-round-large">
+    <button id="toggle-filters" class="w3-bar-item w3-button w3-left w3-border-right lexttip"
+            title="{{ messenger.toggle_search_filter }}">
+      <img width="16px" height="16px" src="/static/icons/filter.svg" alt="Filter">
+    </button>
+    <input id="search-words-form" class="w3-bar-item w3-input" {{ form.search_words|safe }}
+           title="{{ messenger.enter_search_words }}"
+           placeholder="{{ messenger.search_our_database }} ..."
+           name="search_words"
+           type="text" maxlength="128">
+    <button id="search-form-submit" onclick="searchFormSubmit()" class="w3-bar-item w3-button w3-right" type="submit">
+      <img width="16px" height="16px" src="/static/icons/search.svg" alt="Search">
+    </button>
+    <button id="erase-search-words" class="w3-bar-item w3-button w3-right" type="button">
+      <img width="16px" height="16px" src="/static/icons/remove-black.svg" alt="X">
+    </button>
+  </div>
+  <div id="search-filter" class="{{ filter_visibility }}">
+    <div class="w3-row w3-padding-16">
+      <div class="w3-container w3-quarter w3-border w3-round-large lex-filter-item">
+        <h4>{{ messenger.act_type }}</h4>
+        <ul class="w3-ul">
+          <li>
+            <input id="type_document_reg" name="type_document" value="REG" class="w3-check" type="checkbox" {{ form.type_document.REG }}>
+            <label for="type_document_reg">{{ messenger.regulation }}</label>
+          </li>
+          <li>
+            <input id="type_document_dir" name="type_document" value="DIR" class="w3-check" type="checkbox" {{ form.type_document.DIR }}>
+            <label for="type_document_dir">{{ messenger.directive }}</label>
+          </li>
+        </ul>
+      </div>
+      <div class="w3-container w3-third w3-border w3-round-large lex-filter-item">
+        <h4>{{ messenger.status }}</h4>
+        <ul class="w3-ul">
+          <li>
+            <input id="status_any" onclick="toggleStatusFilter()" class="w3-check" type="checkbox" {{ form.in_force.None }}>
+            <label for="status_any">{{ messenger.any }}</label>
+          </li>
+          <li>
+            <input id="status_in_force" name="in_force" value="True" class="w3-radio" type="radio" {{ form.in_force.True }}>
+            <label for="status_in_force">{{ messenger.in_force }}</label>
+          </li>
+          <li>
+            <input id="status_not_in_force" name="in_force" value="False" class="w3-radio" type="radio" {{ form.in_force.False }}>
+            <label for="status_not_in_force">{{ messenger.expired }}</label>
+          </li>
+        </ul>
+      </div>
+      <div class="w3-container w3-third w3-border w3-round-large lex-filter-item">
+        <h4>{{ messenger.search_depth }}</h4>
+        <ul class="w3-ul">
+          <li>
+            <input id="depth_shallow" name="deep" value="False" class="w3-radio" type="radio" {{ form.deep.False }}>
+            <label for="depth_shallow">{{ messenger.only_document_titles }}</label>
+          </li>
+          <li>
+            <input id="depth_deep" name="deep" value="True" class="w3-radio" type="radio" {{ form.deep.True }}>
+            <label for="depth_deep">{{ messenger.full_body }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="w3-row">
+      <div class="w3-container w3-twothird w3-border w3-round-large lex-filter-item">
+        <h4>{{ messenger.publication_year }}</h4>
+        <div class="w3-row">
+          <div class="w3-container w3-third w3-padding">
+            <label for="lex-filter-date-from">{{ messenger.from_time }}</label>
+            <input
+              id="lex-filter-date-from"
+              maxlength="4"
+              minlength="4"
+              name="date_from"
+              type="text"
+              class="w3-input lex-input-pub-date"
+              placeholder="YYYY"
+              {{ form.date_from|safe }}>
+          </div>
+          <div class="w3-container w3-quarter w3-padding">
+            <label for="lex-filter-date-to">{{ messenger.to_time }}</label>
+            <input
+              id="lex-filter-date-to"
+              maxlength="4"
+              minlength="4"
+              name="date_to"
+              type="text"
+              class="w3-input lex-input-pub-date"
+              placeholder="YYYY" {{ form.date_to|safe }}>
+          </div>
+          <div class="w3-container w3-third w3-padding">
+            <input
+              id="lex-filter-exact-year"
+              value="on"
+              class="w3-check"
+              name="exact_year"
+              type="checkbox"
+              onclick="toggleFixedYear()">
+            <label for="lex-filter-exact-year">{{ messenger.exact_year }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="w3-container w3-quarter w3-border w3-round-large lex-filter-item">
+        <h4><label for="lex-filter-serial-number">{{ messenger.serial_number }}</label></h4>
+        <div class="w3-padding">
+          <input
+            id="lex-filter-serial-number"
+            maxlength="4"
+            minlength="1"
+            name="serial_number"
+            type="text"
+            class="w3-input" {{ form.serial_number|safe }}>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>

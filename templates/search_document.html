@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+{% block body %}
+{# Sidebar #}
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-theme-l5 w3-animate-left" id="mySidebar">
+  <div id="sidebarHead">
+    <div class="w3-black">
+      <div class=" w3-bar-item">
+        <a
+          href="javascript:void(0)"
+          onclick="w3_close()"
+          class="w3-button w3-hover-gray w3-hide-large"
+          title="{{ messenger.close_menu }}">
+          <img width="25px" height="25px" src="/static/icons/remove-white.svg" alt="{{ messenger.go_back }}">
+        </a>
+        <a class="w3-button w3-large" href="/">{{ messenger.This_Domain }}</a>
+      </div>
+      <form class="w3-bar-item w3-medium" method="get" action="{{ r_path }}">
+        <div class="w3-bar w3-border w3-round-large w3-white">
+          <input
+            value="{{ search_words }}"
+            title="{{ messenger.search_this_document }}"
+            placeholder="{{ messenger.search_this_document }} ..."
+            class="w3-input"
+            style="width: 80%;float: left"
+            name="search_words"
+            type="text">
+          <button class="w3-button w3-right" type="submit">
+            <img width="16px" height="16px" src="/static/icons/search.svg" alt="Search">
+          </button>
+        </div>
+        <div class="w3-padding">
+          <input type="checkbox" name="all_versions" class="w3-check w3-padding-48" id="all_v_cb" {{ all_versions }}>
+          <label for="all_v_cb">{{ messenger.search_in_all_vs }}</label>
+        </div>
+      </form>
+    </div>
+    <div class="w3-container w3-border w3-rightbar">
+      <div class="w3-medium w3-bar-item w3-container">
+        {% include 'fragments/document_ordinate.html' %}
+        {% include 'fragments/pagination.html' %}
+      </div>
+    </div>
+  </div>
+  <div id="sidebarBody">
+    <ul class="w3-ul w3-medium">
+      {% for hit in hits.hits %}
+        <li>
+          <a href="#search-hit-{{ loop.index }}" style="text-decoration: none">
+            {{ hit.id_human }}
+            {% if hit.title is not none %}
+              &mdash; {{ hit.title|safe }}
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+{# Overlay effect when opening sidebar on small screens #}
+<div
+  class="w3-overlay w3-hide-large"
+  onclick="w3_close()"
+  style="cursor:pointer"
+  title="{{ messenger.close_side_menu }}"
+  id="myOverlay">
+</div>
+
+{# Main content: shift it to the right by 250 pixels when the sidebar is visible #}
+<div class="w3-main" style="margin-left:440px">
+{# Navbar #}
+  <div id="topNavbar" class="w3-bar w3-theme w3-top w3-left-align w3-large w3-hide-large">
+    <a class="w3-bar-item w3-button w3-hover-gray w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()">
+      <img
+        width="25px"
+        height="25px"
+        src="/static/icons/align-left-white.svg"
+        alt="{{ messenger.contents_table }}">
+    </a>
+    <a href="/" class="w3-bar-item w3-button">{{ messenger.This_Domain }}</a>
+    {# <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a> #}
+  </div>
+
+  {# Dummy element to push body down on small devices #}
+  <div id="topSpaceDummy" class="w3-row w3-hide-large w3-padding-16"></div>
+  <div id="mainBody" class="w3-row w3-padding-16 w3-margin-left">
+    <div id="article" class="w3-threequarter w3-container">
+      <h3>{{ messenger.search_results_for }} &raquo;{{ search_words }}&laquo;</h3>
+      {% if hits.total == 1 %}
+        <h5>({{ hits.total }} {{ messenger.result_s.0 }})</h5>
+      {% else %}
+        <h5>({{ hits.total }} {{ messenger.result_s.1 }})</h5>
+      {% endif %}
+      <hr>
+      {% for hit in hits.hits %}
+        <div id="search-hit-{{ loop.index }}" class="w3-container search-hit">
+          <p class="hit-head">
+            <a href="{{ hit.href }}">
+              {{ hit.id_human }}
+              {% if hit.title is not none %}
+                &mdash; {{ hit.title|safe }}
+              {% endif %}
+            </a>
+          </p>
+          {% if hit.highlights is not none %}
+            <p>{{ hit.highlights|safe }}</p>
+          {% endif %}
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
+  </div>
+
+{% include 'fragments/footer_article.html' %}
+
+{# END MAIN #}
+</div>
+{% endblock %}
+
+{% block script %}
+  <!-- build:js inline ../static/js/sidebar.min.js -->
+    <script type="text/javascript" src="/static/js/sidebar.js"></script>
+  <!-- /build -->
+  <!-- build:js inline ../static/js/document_search.min.js -->
+    <script type="text/javascript" src="/static/js/document_search.js"></script>
+  <!-- /build -->
+  <script type="text/javascript">
+    $(window).on('load', function () {
+        sidebarMain();
+        documentSearchMain();
+    })
+  </script>
+{% endblock %}

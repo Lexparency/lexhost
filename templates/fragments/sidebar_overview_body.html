@@ -1,0 +1,148 @@
+<div id="sidebarBodyOverview">
+  <div class="w3-bar-block">
+    <div id="document-metadata">
+      <div class="w3-bar-item w3-theme-light lxp-meta-head">
+        <a href="#" class="w3-theme-light">
+          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          {{ messenger.timeline }}
+        </a>
+      </div>
+      <div class="w3-bar-item lxp-meta-body">
+        <ul class="w3-ul">
+          {% if cover.date_publication %}
+            <li>{{ messenger.publication_date }}: {{ cover.date_publication }}
+            </li>
+          {% endif %}
+          {% if cover.date_document %}
+            <li>{{ messenger.document_date }}: {{ cover.date_document }}</li>
+          {% endif %}
+          {% if not cover.in_force and enforced is not none %}
+            <li>{{ messenger.not_in_force_since }}: {{ cover.date_no_longer_in_force }}</li>
+          {% endif %}
+          {% if enforced is not none %}
+            {% if enforced %}
+              <li>{{ messenger.in_force_since }}: {{ cover.first_date_entry_in_force }}</li>
+            {% else %}
+              <li>{{ messenger.enters_into_force_on }}: {{ cover.first_date_entry_in_force }}</li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% if nationals.cover %}
+      <div class="w3-bar-item w3-theme-light lxp-meta-head">
+        <a href="#" class="w3-theme-light">
+          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          {{ messenger.backref_laws_heading }}:
+        </a>
+      </div>
+      <div class="w3-bar-item lxp-meta-body">
+        <ul class="w3-ul">
+          {% for national in nationals.cover %}
+            <li class="w3-container nat-ref-list toc-node">
+              <a href="#" class="w3-theme-light">
+                <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+                  {{ national.country_name }}
+              </a>
+              <ul class="w3-ul" style="text-indent: 1em">
+                {% for target in national.targets %}
+                  {% if target.platforms|length > 1 %}
+                    <li>{{ target.text }}:
+                      {% for platform in target.platforms %}
+                        <a href="{{ platform.href }}" rel="{{ platform.rel }}"
+                          {% if target.title %}
+                            title="{{ target.title }}" class="lexttip"
+                          {% endif %}>
+                          {{ platform.name }}</a>{{ "," if not loop.last }}
+                      {% endfor %}
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ target.platforms.0.href }}" rel="{{ target.platforms.0.rel }}"
+                        {% if target.title %}
+                          title="{{ target.title }}" class="lexttip"
+                        {% endif %}>
+                        {{ target.text }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if cover.passed_by %}
+      <div class="w3-bar-item w3-theme-light lxp-meta-head">
+        <a href="#" class="w3-theme-light">
+          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          {{ messenger.passed_by }}
+        </a>
+      </div>
+      <div class="w3-bar-item lxp-meta-body">
+        <ul class="w3-ul">
+          {% for body in cover.passed_by %}<li>{{ body }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% for ref in cover.referrers %}
+      <div class="w3-bar-item w3-theme-light lxp-meta-head">
+        <a href="#" class="w3-theme-light">
+          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          {{ ref.label }}:
+        </a>
+      </div>
+      <div class="w3-bar-item lxp-meta-body">
+        <ul class="w3-ul">
+          {% for anchor in ref.anchors %}
+            <li>
+              <div>
+                <a style="float: left"
+                   {% if anchor.title %}
+                     title="{{ anchor.title }}"
+                     class="lexttip"
+                   {% endif %}
+                   href="{{ anchor.href }}">
+                  {{ anchor.text }}
+                </a>
+                {% if anchor.implemented in (true, false) %}
+                  <button class="lxp-dummy-button lxp-minibutton lexttip"
+                  {% if anchor.implemented %}
+                    title="{{ messenger.reference_implemented }}"
+                  {% else %}
+                    title="{{ messenger.reference_not_implemented }}"
+                  {% endif %}
+                  >
+                  <img height="10px" width="10px"
+                    {% if anchor.implemented %}
+                      alt="{{ messenger.impl }}"
+                      src="/static/icons/check-circle.svg"
+                    {% else %}
+                      alt="{{ messenger.nimpl }}"
+                      src="/static/icons/cross-circle.svg"
+                    {% endif %}>
+                  </button>
+                {% endif %}
+              </div>
+              <div style="clear: both;"></div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+    {% if cover.is_about %}
+      <div class="w3-bar-item w3-theme-light lxp-meta-head">
+        <a href="#" class="w3-theme-light">
+          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          {{ messenger.is_about }}
+        </a>
+      </div>
+      <div class="w3-bar-item lxp-meta-body">
+        <ul class="w3-ul">
+          {% for kw in cover.is_about %}<li>{{ kw }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</div>

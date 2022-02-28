@@ -1,0 +1,36 @@
+{
+  "current_page": 1,
+  "hits": [
+    {
+      "body": [
+        {
+          "transaction_type": "delete",
+          "url": "https://lexparency.org/eu/breg/ART_2/"
+        },
+        {
+          "body": "<p> This law shall be applicable from <span property=\"eli:date_applicability\" content=\"2017-02-03\" datatype=\"xsd:date\">February 3rd 2017</span> onwards. But who cares. Just for testin the Bot-Api. </p>",
+          "name": "Art. 3 breg",
+          "title": "Final",
+          "transaction_type": "update",
+          "url": "https://lexparency.org/eu/breg/ART_3/"
+        },
+        {
+          "body": "<p>As I said.</p>",
+          "name": "Art. 1a breg",
+          "title": "Actually just a replacement of Article 2",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/breg/ART_1a/"
+        }
+      ],
+      "bot_url": "https://lexparency.org/_botapi/breg.json",
+      "date_document": "2019-09-30",
+      "id_local": "breg",
+      "in_force": true,
+      "name": "breg",
+      "pop_title": "Breakfast Regulation",
+      "title": "On breakfast requirements for prudential gastronomy management",
+      "url": "https://lexparency.org/eu/breg/"
+    }
+  ],
+  "total_pages": 1
+}

@@ -1,0 +1,11 @@
+<a href="/{{ cover.domain }}/{{ document_id }}{{ '/TOC' if version != '' else '' }}/{{ version }}"
+   class="w3-button lexttip w3-round" title="{{ document_title }}">
+  {% if cover.id_human is defined %}
+    {{ cover.id_human }}
+  {% else %}
+    {{ cover.id_local }}
+  {% endif %}
+  {% if cover.pop_acronym is defined %}
+    ({{ cover.pop_acronym }})
+  {% endif %}
+</a>

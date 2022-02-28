@@ -1,0 +1,10 @@
+Header set last-modified "DATE_STRING"
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+</IfModule>

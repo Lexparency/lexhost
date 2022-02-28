@@ -1,0 +1,35 @@
+{
+  "passed_by": [
+    "European Parliament",
+    "Council of the European Union"
+  ],
+  "pop_title": "Breakfast Regulation",
+  "source_iri": "http://example.com/stub1/idi",
+  "is_about": [
+    "Personal data",
+    "Consumer rights"
+  ],
+  "title": "On breakfast requirements for prudential gastronomy management",
+  "source_url": "http://example.com/stub1",
+  "cites": [
+    {
+      "href": "http://example.com/document1",
+      "text": "Document one",
+      "title": "First Document Ever"
+    }
+  ],
+  "amends": [
+    {
+      "href": "http://example.com/document2",
+      "text": "Document two"
+    }
+  ],
+  "doc_type": "cover",
+  "domain": "eu",
+  "serial_number": 1,
+  "version": [
+    "initial"
+  ],
+  "id_local": "stub1",
+  "in_force": true
+}

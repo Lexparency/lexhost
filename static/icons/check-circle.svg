@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 496 496"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="check-circle.svg"
+   width="496"
+   height="496"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4508">
+      <g
+         inkscape:label="Clip"
+         id="use4510">
+        <g
+           transform="matrix(1.2798386,0,0,1.2798386,-69.423725,-69.376286)"
+           id="g4543">
+          <path
+             d="M 248,0 C 111.033,0 0,111.033 0,248 0,384.967 111.033,496 248,496 384.967,496 496,384.967 496,248 496,111.033 384.967,0 248,0 Z m 0,48 c 110.532,0 200,89.451 200,200 0,110.532 -89.451,200 -200,200 C 137.468,448 48,358.549 48,248 48,137.468 137.451,48 248,48 m 140.204,130.267 -22.536,-22.718 c -4.667,-4.705 -12.265,-4.736 -16.97,-0.068 L 207.346,295.697 147.554,235.42 c -4.667,-4.705 -12.265,-4.736 -16.97,-0.069 l -22.719,22.536 c -4.705,4.667 -4.736,12.265 -0.068,16.971 l 90.781,91.516 c 4.667,4.705 12.265,4.736 16.97,0.068 L 388.137,195.238 c 4.704,-4.668 4.734,-12.266 0.067,-16.971 z"
+             id="path4541"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     id="namedview6"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.81557583"
+     inkscape:cx="156.71153"
+     inkscape:cy="230.92499"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+  <path
+     style="fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:2.33796501;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     mask="none"
+     clip-path="none"
+     d="M 254.4082 -0.7421875 A 248.4068 247.32202 0 0 0 10.728516 174.61133 A 248.4068 247.32202 0 0 0 176.18359 483.14648 A 248.4068 247.32202 0 0 0 486.07812 318.42969 A 248.4068 247.32202 0 0 0 320.6543 9.8789062 L 250.94922 238.17969 L 380.37891 109.79102 C 386.87055 103.3505 397.35385 103.39319 403.79297 109.88477 L 434.88672 141.22852 C 441.32586 147.72 441.28304 158.20405 434.79297 164.64453 L 196.66992 400.85547 C 190.17839 407.29612 179.69696 407.25307 173.25781 400.76172 L 48.005859 274.49609 C 41.565349 268.00317 41.608059 257.52117 48.099609 251.08203 L 79.445312 219.98828 C 85.936893 213.54856 96.420177 213.59068 102.85938 220.08203 L 185.35352 303.24805 L 250.94531 238.18359 L 320.60742 9.8632812 A 248.4068 247.32202 0 0 0 254.4082 -0.7421875 z "
+     id="path4490" />
+</svg>

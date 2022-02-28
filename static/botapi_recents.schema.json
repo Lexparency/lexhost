@@ -1,0 +1,84 @@
+{
+  "$id": "https://lexparency.org/static/botapi_recents.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "JSON-Schema of the response obtained with the GET /_botapi/recents.json?date_from=YYYY-mm-dd&page=p.",
+  "required": ["current_page", "total_pages", "hits"],
+  "properties": {
+    "total_pages": {
+      "type":  "integer",
+      "description": "The requested result is fragmented into pages."
+    },
+    "current_page": {
+      "type":  "integer"
+    },
+    "hits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bot_url", "date_document", "id_local"],
+        "properties": {
+          "bot_url": {
+            "type": "string",
+            "description": "Bot-API URL corresponding to the document corresponding to this list item."
+          },
+          "id_local": {
+            "type": "string",
+            "description": "CELEX number of this document, i.e. id_local from the ELI ontology."
+          },
+          "date_document": {
+            "type": "string",
+            "description": "Date-string in format \"YYYY-mm-dd\", indicating the date of publication for initial versions, or the Version-date of the document."
+          },
+          "in_force": {
+            "type": ["boolean", "null"],
+            "description": "in-force status of the legislative act. Only provided with the single_step-Option."
+          },
+          "title": {
+            "type": "string",
+            "description": "Full document title. Only provided with the single_step-Option."
+          },
+          "name": {
+            "type": "string",
+            "description": "Typically used reference for this document. E.g. Regulation (EU) 575/2013. Only provided with the single_step-Option."
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the document's landing page. E.g. \"https://lexparency.de/eu/CRR/\". Only provided with the single_step-Option."
+          },
+          "body": {
+            "type": "array",
+            "description": "List of Articles, constituting this document. Only provided with the single_step-Option.",
+            "items": {
+              "type": "object",
+              "required": ["url", "transaction_type"],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "URL to this article. E.g. \"https://lexparency.de/eu/CRR/ART_92/\""
+                },
+                "title": {
+                  "type": ["string", "null"],
+                  "description": "Title of the article. E.g. \"Eigenmittelanforderungen\""
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Qualified identifier for referencing purposes. E.g. \"Art. 1 CRR – Regulation (EU) No 575/2013\""
+                },
+                "body": {
+                  "type": "string",
+                  "description": "Text of the article's body, including basic markup. No anchor tags."
+                },
+                "transaction_type": {
+                  "type": "string",
+                  "enum": ["insert", "update", "delete"],
+                  "description": "Describing effect of the recent update on the single article. I.e. the corresponding database-transaction."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

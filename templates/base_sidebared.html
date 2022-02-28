@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  {# Sidebar #}
+  {% block sideBar %}
+  {% endblock %}
+
+  {# Overlay effect when opening sidebar on small screens #}
+  <div
+    class="w3-overlay w3-hide-large"
+    onclick="w3_close()"
+    style="cursor:pointer"
+    title="{{ messenger.close_side_menu }}"
+    id="myOverlay"></div>
+
+  <div id="articleContent" class="w3-main" style="margin-left:440px">
+  {# Navbar for small devices #}
+    <div id="topNavbar" class="w3-bar w3-theme w3-top w3-left-align w3-large w3-hide-large">
+      <a class="w3-bar-item w3-button w3-hover-gray w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()">
+        <img
+          width="25px"
+          height="25px"
+          src="/static/icons/align-left-white.svg"
+          alt="{{ messenger.contents_table }}">
+      </a>
+      <a rel="nofollow" href="/" class="w3-bar-item w3-button">
+        <img src="/static/icons/logo_white.svg" alt="Logo" height="20px" width="20px">
+        {{ messenger.This_Domain }}
+      </a>
+      <span class="w3-hide-large w3-right" style="opacity:0">lexp</span>
+      <button id="languageButtonMobile" class="w3-item w3-button w3-right" title="{{ messenger.languages }}">
+        <img width="35" height="35" src="/static/icons/languages.svg" alt="{{ messenger.languages }}">
+      </button>
+      <div id="languagesListMobile" style="display:none">
+        {% include 'fragments/languages_list.html' %}
+      </div>
+    </div>
+
+    {# Dummy element to push body down on small devices #}
+    <div id="topSpaceDummy" class="w3-row w3-hide-large w3-padding-16"></div>
+    <div id="mainBody" class="w3-row w3-padding-16 w3-margin-left">
+      {% block mainBody %}
+      {% endblock %}
+      <div id="AdPanelRightContainer" class="w3-margin-top w3-hide-small" style="margin-right:50px">
+        <div id="supportOptionsPanel" style="width:161px;height:601px;">
+         {% include 'fragments/panel_right.html' %}
+        </div>
+      </div>
+    </div>
+    {% include 'fragments/footer_article.html' %}
+  </div>
+  {% include 'fragments/versions.html' %}
+{% endblock %}
+
+{% block script %}
+  <!-- build:js inline ../static/js/sidebar.min.js -->
+    <script type="text/javascript" src="/static/js/sidebar.js"></script>
+  <!-- /build -->
+  <!-- build:js inline ../static/js/reader.min.js -->
+    <script type="text/javascript" src="/static/js/reader.js"></script>
+  <!-- /build -->
+  <!--suppress JSUnusedLocalSymbols -->
+  <script type="text/javascript">
+    $(function() {
+      $.ajaxSetup({cache: true});
+      sidebarMain();
+      documentSearchMain();
+      tippy('.lexttip', {
+        arrow: true
+      });
+      ['Mobile', 'Desktop'].forEach(function (v, i, a) {
+        tippy('#languageButton' + v, {
+          arrow: true,
+          html: '#languagesList' + v,
+          trigger: 'click',
+          placement: 'bottom',
+          interactive: true
+        })
+      });
+      {% block on_load %}
+      {% endblock %}
+    })
+  </script>
+{% endblock %}

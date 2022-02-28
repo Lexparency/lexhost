@@ -1,0 +1,45 @@
+<div id="sidebarHead">
+  {% include 'fragments/sidebar_head_head.html' %}
+  <div class="lxp-sidebar-head-body">
+    <div class="w3-container w3-border w3-rightbar w3-hide-small">
+      <div class="w3-medium w3-bar-item w3-container">
+        {% include 'fragments/document_ordinate.html' %}
+        {% include 'fragments/in_force_sign.html' %}
+      </div>
+      <div class="w3-medium w3-bar-item w3-container">
+        {% include 'fragments/neighbour_navigator.html' %}
+        {% include 'fragments/version_sign.html' %}
+      </div>
+    </div>
+  </div>
+  <div class="w3-hide lxp-sidebar-head-body">
+    <div class="w3-container w3-border w3-rightbar w3-hide-small">
+      <div class="w3-medium w3-bar-item w3-container">
+        {% include 'fragments/document_ordinate.html' %}
+        {% include 'fragments/in_force_sign.html' %}
+      </div>
+      <div class="w3-medium w3-bar-item w3-container">
+        <a class="w3-button w3-round" rel="nofollow" target="_blank" style="text-decoration:underline" href="{{ cover.source_url }}">{{ messenger.view_on_eurlex }}</a>
+        {% include 'fragments/version_sign.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="preview" class="w3-leftbar w3-rightbar">
+  <div id="preview-head" class="w3-bar-item w3-theme-l4 w3-medium w3-hide">
+    Loading preview
+  </div>
+  <div id="preview-body" class="w3-bar-item w3-medium w3-hide">
+    {# Icon from https://icons8.com/preloaders/ #}
+    <img id="loading-img" alt="{{ messenger.loading }}" class="w3-hide" src="/static/loading.gif">
+    <div id="preview-body-loaded"></div>
+  </div>
+</div>
+<div id="sidebarBody">
+  <div class="lxp-sidebar-body">
+      {{ toccordion|safe }}
+  </div>
+  <div class="lxp-sidebar-body w3-hide">
+    {% include 'fragments/sidebar_overview_body.html' %}
+  </div>
+</div>

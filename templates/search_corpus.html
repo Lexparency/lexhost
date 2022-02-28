@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    <meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
+{% block body %}
+  {# Navbar #}
+  {% include 'fragments/top_nav_base.html' %}
+  <div class="w3-content w3-padding-64" style="max-width: 800px">
+    <div class="w3-container" style="min-height: 70vh">
+      {% if hits is none %}
+        <h3>{{ messenger.advanced_search }}</h3>
+      {% else %}
+        <h3>{{ messenger.search_results }}
+            <small>({{ messenger.total }}: {{ hits.total }})</small></h3>
+      {% endif %}
+      {% include 'fragments/search_form_full.html' %}
+      {% if hits is not none %}
+        {% for hit in hits.hits %}
+          <div id="search-hit-{{ loop.index }}" class="w3-container search-hit">
+            <p class="hit-head">
+              <a href="{{ hit.href }}">
+                {{ hit.id_human }}
+              </a>
+            </p>
+            {% if hit.title is not none %}
+              <p class="hit-title">{{ hit.title|safe }}</p>
+            {% endif %}
+            {% if hit.highlights is not none %}
+              <p>{{ hit.highlights|safe }}</p>
+            {% endif %}
+          </div>
+          <hr>
+        {% endfor %}
+        {% include 'fragments/pagination.html' %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% include 'fragments/footer_article.html' %}
+{% endblock %}
+
+{% block script %}
+  <!-- build:js inline ../static/js/search_form.min.js -->
+    <script type="text/javascript" src="/static/js/search_form.js"></script>
+  <!-- /build -->
+  <script type="text/javascript">
+    $('document').ready(function() {
+      searchFormMain();
+    });
+  </script>
+{% endblock %}

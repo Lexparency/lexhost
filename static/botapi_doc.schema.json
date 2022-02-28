@@ -1,0 +1,57 @@
+{
+  "$id": "https://lexparency.org/static/botapi_doc.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "JSON-Schema of the response obtained with the GET /_botapi/<id_local>.json",
+  "required": ["head", "body"],
+  "properties": {
+    "head": {
+      "type": "object",
+      "required": ["in_force", "title", "name", "url"],
+      "properties": {
+        "in_force": {
+          "type": ["boolean", "null"],
+          "description": "in-force status of the legislative act."
+        },
+        "title": {
+          "type": "string",
+          "description": "Full document title."
+        },
+        "name": {
+          "type": "string",
+          "description": "Typically used reference for this document. E.g. Regulation (EU) 575/2013"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to the document's landing page. E.g. \"https://lexparency.de/eu/CRR/\""
+        }
+      }
+    },
+    "body": {
+      "type": "array",
+      "description": "List of Articles, constituting this document.",
+      "items": {
+        "type": "object",
+        "required": ["url", "title", "name", "body"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL to this article. E.g. \"https://lexparency.de/eu/CRR/ART_92/\""
+          },
+          "title": {
+            "type": ["string", "null"],
+            "description": "Title of the article. E.g. \"Eigenmittelanforderungen\""
+          },
+          "name": {
+            "type": "string",
+            "description": "Qualified identifier for referencing purposes. E.g. \"Art. 1 CRR – Regulation (EU) No 575/2013\""
+          },
+          "body": {
+            "type": "string",
+            "description": "Text of the article's body, including basic markup. No anchor tags."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{% extends 'base_sidebared.html' %}
+
+
+{% block meta %}
+  {% if next %}
+    <link rel="next" href="{{ next }}">
+  {% endif %}
+  <link rel="canonical" href="https://{{ messenger.this_domain }}{{ canonical_path }}">
+  {% if (cover.pop_title or cover.pop_acronym) and current_version %}
+  {% else %}
+    <meta name="robots" content="{{ 'noindex,' if not current_version }}nofollow" />
+  {% endif %}
+  <!-- ELI metadata properties -->
+  <meta about="{{ cover.source_iri }}" typeof="eli:LegalResource" />
+  <meta about="{{ cover.source_iri }}" property="eli:id_local" content="{{ cover.id_local }}" lang="" />
+  <meta about="{{ cover.source_iri }}/eng" typeof="eli:LegalExpression" />
+  <meta about="{{ cover.source_iri }}" property="eli:is_realized_by" resource="{{ cover.source_iri }}/eng" />
+  <meta about="{{ url }}" typeof="eli:Format" />
+  <meta about="{{ url }}" property="eli:embodies" resource="{{ cover.source_iri }}/eng" />
+  <meta about="{{ url }}" property="eli:format" resource="https://www.iana.org/assignments/media-types/text/html" />
+{% endblock %}
+
+
+{% block sideBar %}
+  <nav class="w3-sidebar w3-bar-block w3-collapse w3-theme-l6 w3-animate-left" id="mySidebar">
+    {% include "fragments/sidebar_overview.html" %}
+  </nav>
+{% endblock %}
+
+
+{% block mainBody %}
+  <div id="mainBodyInner" class="w3-container w3-twothird">
+    <div class="w3-container" style="margin-bottom:32px">
+       <h1 style="font-size: large">{{ cover.title|safe }}</h1>
+       {% if cover.pop_title or cover.pop_acronym %}
+         <h2 style="font-size: larger; font-style: italic">
+           {% if cover.pop_title %}
+             {{ cover.pop_title }}
+             {% if cover.pop_acronym %}
+               &nbsp;&ndash;&nbsp;{{ cover.pop_acronym }}
+             {% endif %}
+           {% elif cover.pop_acronym %}
+             {{ cover.pop_acronym }}
+           {% endif %}
+         </h2>
+       {% endif %}
+      <hr>
+      {% if toccordion is not none %}
+        <div id="document-toc">{{ toccordion|safe }}</div>
+      {% else %}
+        {% if messenger.language_2 == "de" %}
+          <p>
+            Dieses Dokument ist derzeit leider nicht bei uns verfügbar.
+            Bitte nutzen Sie in diesem Fall <a href="{{ cover.source_url }}">das verfügbare Format auf Eur-Lex</a>
+          </p>
+        {% elif messenger.language_2 == "es" %}
+          <p>
+            Desgraciadamente, este documento no esta disponible todavía en esta plataforma.
+            En este caso recomendamos usar <a href="{{ cover.source_url }}">el formato disponible en Eur-Lex</a>
+          </p>
+        {% else %}  {# assert language = en #}
+          <p>
+            Unfortunately, this document is not yet available here.
+            In this case, we recommend to use <a href="{{ cover.source_url }}">the format provided by Eur-Lex</a>
+          </p>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div id="supportOptionsSmall" class="w3-hide-large w3-hide-medium" style="width:301px;height:251px">
+      {% include 'fragments/panel_bottom_small.html' %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  {{ super() }}
+  <!-- build:js inline ../static/js/document_search.min.js -->
+  <script type="text/javascript" src="/static/js/document_search.js"></script>
+  <!-- /build -->
+  <!-- build:include ../templates/fragments/hypothesis_js.html --><!-- /build -->
+{% endblock %}
+
+{% block on_load %}
+  readerMain(true);
+{% endblock %}

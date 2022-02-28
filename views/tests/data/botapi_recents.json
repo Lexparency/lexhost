@@ -1,0 +1,11 @@
+{
+  "current_page": 1,
+  "total_pages": 1,
+  "hits": [
+    {
+      "bot_url": "https://lexparency.org/_botapi/CRR.json",
+      "date_document": "2013-06-26",
+      "id_local":"CRR"
+    }
+  ]
+}

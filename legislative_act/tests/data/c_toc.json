@@ -1,0 +1,123 @@
+{
+  "_index" : "legex-en",
+  "_type" : "doc",
+  "_id" : "eu-32016R0679-TOC-initial",
+  "_version" : 1,
+  "found" : true,
+  "_source" : {
+    "table" : [
+      {
+        "locator" : "PRE",
+        "heading" : {
+          "ordinate" : "Preamble"
+        }
+      },
+      {
+        "locator" : "ART_1",
+        "heading" : {
+          "ordinate" : "Article 1",
+          "title" : "Subject-matter and objectives"
+        }
+      },
+      {
+        "locator" : "ART_2",
+        "heading" : {
+          "ordinate" : "Article 2",
+          "title" : "Material scope"
+        }
+      },
+      {
+        "locator" : "ART_4",
+        "heading" : {
+          "ordinate" : "Article 4",
+          "title" : "Definitions"
+        }
+      },
+      {
+        "locator" : "ART_12",
+        "heading" : {
+          "ordinate" : "Article 12",
+          "title" : "Transparent information, communication and modalities for the exercise of the rights of the data subject"
+        }
+      },
+      {
+        "locator" : "ART_13",
+        "heading" : {
+          "ordinate" : "Article 13",
+          "title" : "Information to be provided where personal data are collected from the data subject"
+        }
+      },
+      {
+        "locator" : "ART_14",
+        "heading" : {
+          "ordinate" : "Article 14",
+          "title" : "Information to be provided where personal data have not been obtained from the data subject"
+        }
+      },
+      {
+        "locator" : "toc-CHP_I",
+        "heading" : {
+          "ordinate" : "CHAPTER I",
+          "title" : "General provisions"
+        },
+        "children" : [
+          "ART_1",
+          "ART_2",
+          "ART_4"
+        ]
+      },
+      {
+        "locator" : "toc-CHP_II",
+        "heading" : {
+          "ordinate" : "CHAPTER II",
+          "title" : "Rights of the data subject"
+        },
+        "children" : [
+          "ART_12",
+          "toc-CHP_II-SEC_1",
+          "toc-CHP_II-SEC_2"
+        ]
+      },
+      {
+        "locator" : "toc-CHP_II-SEC_1",
+        "heading" : {
+          "ordinate" : "Section 1",
+          "title" : "Transparency and modalities"
+        },
+        "children" : [
+          "ART_13"
+        ]
+      },
+      {
+        "locator" : "toc-CHP_II-SEC_2",
+        "heading" : {
+          "ordinate" : "Section 2",
+          "title" : "Information and access to personal data"
+        },
+        "children" : [
+          "ART_14"
+        ]
+      },
+      {
+        "locator" : "FIN",
+        "heading" : {
+          "ordinate" : "Final"
+        }
+      }
+    ],
+    "doc_type" : "contentstable",
+    "abstract" : {
+      "in_force" : true,
+      "domain" : "eu",
+      "serial_number" : 679,
+      "version" : [
+        "initial"
+      ],
+      "id_local" : "32016R0679",
+      "type_document" : "REG",
+      "date_publication" : "2016-05-04",
+      "is_latest" : true
+    },
+    "score_multiplier" : 11
+  }
+}

@@ -1,0 +1,16 @@
+<div id="sidebarHead">
+  {% include 'fragments/sidebar_head_head.html' %}
+  <div class="w3-container w3-border w3-rightbar">
+    <div class="w3-medium w3-bar-item w3-container">
+      <button class="w3-round lxp-dummy-button" disabled>{{ cover.id_human }}</button>
+      {% include 'fragments/in_force_sign.html' %}
+    </div>
+    <div class="w3-medium w3-bar-item w3-container">
+      <a class="w3-button w3-round" style="text-decoration:underline" rel="nofollow" href="{{ cover.source_url }}">{{ messenger.view_on_eurlex }}</a>
+      {% include 'fragments/version_sign.html' %}
+    </div>
+  </div>
+</div>
+<div id="sidebarBody">
+  {% include 'fragments/sidebar_overview_body.html' %}
+</div>

@@ -1,0 +1,59 @@
+{
+  "_id": "eu-dummy1",
+  "_source": {
+    "availabilities": [
+      {
+        "version": "initial",
+        "date_document": "2016-04-27",
+        "available": true
+      }
+    ],
+    "exposed_and_hidden": [
+      {
+        "sub_id": "COV",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "PRE",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "TOC",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "ART_1",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "ART_2",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "ART_3",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "FIN",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "DEF_ART_2_1",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      },
+      {
+        "sub_id": "DEF_ART_2_2",
+        "hidden_version": "initial",
+        "exposed_versions": ["initial"]
+      }
+    ]
+  }
+}

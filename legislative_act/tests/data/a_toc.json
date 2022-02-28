@@ -1,0 +1,59 @@
+{
+  "_id": "eu-dummy1-initial-TOC",
+  "_source": {
+    "abstract": {
+      "domain": "eu",
+      "id_local": "dummy1",
+      "version": ["initial"],
+      "serial_number": 1,
+      "in_force": true
+    },
+    "doc_type": "contentstable",
+    "score_multiplier": 6,
+    "table": [
+      {
+        "locator": "PRE",
+        "heading": {
+          "ordinate": "Preamble"
+        }
+      },
+      {
+        "locator": "ART_1",
+        "heading": {
+          "ordinate": "Article 1",
+          "title": "Subject Matter and Scope"
+        }
+      },
+      {
+        "locator": "ART_2",
+        "heading": {
+          "title": "Definitions",
+          "ordinate": "Article 2"
+        }
+      },
+      {
+        "locator": "CHP_1",
+        "heading": {
+          "ordinate": "Chapter 1",
+          "title": "General purpose and scope"
+        },
+        "children": [
+          "ART_1", "ART_2"
+        ]
+      },
+      {
+        "locator": "ART_3",
+        "heading": {
+          "title": "Final",
+          "ordinate": "Article 3"
+        }
+      },
+      {
+        "locator": "FIN",
+        "heading": {
+          "ordinate": "Final"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "current_page": 1,
+  "hits": [
+    {
+      "body": [
+        {
+          "body": "<p class=\"normal\" id=\"p0\"> This Regulation lays down uniform rules concerning general prudential requirements that institutions supervised under  Directive 2013/36/EU  shall comply with in relation to the following items: </p> <ol class=\"alpha\"><li>(a)  own funds requirements relating to entirely quantifiable, uniform and standardised elements of credit risk, market risk, operational risk and settlement risk; </li> <li>(b)  requirements limiting large exposures; </li> <li>(c)  after the delegated act referred to in  Article 460  has entered into force, liquidity requirements relating to entirely quantifiable, uniform and standardised elements of liquidity risk; </li> <li>(d)  reporting requirements related to points (a), (b) and (c) and to leverage; <ol class=\"roman\"><li>(i) On One hand Roman numbers are cool.</li> <li>(ii) On the other hand, they suck.</li> </ol></li> <li>(e)  public disclosure requirements. <p class=\"normal\"> This Regulation does not govern publication requirements for competent authorities in the field of prudential regulation and supervision of institutions as set out in  Directive 2013/36/EU  . </p> </li> </ol>",
+          "name": "Art. 1 CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Scope",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ART_1/"
+        },
+        {
+          "body": "<ol><li class=\"normal\" id=\"1\"> For the purposes of ensuring compliance with this Regulation, competent authorities shall have the powers and shall follow the procedures set out in  Directive 2013/36/EU  . </li> </ol>",
+          "name": "Art. 2 CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Supervisory powers",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ART_2/"
+        },
+        {
+          "body": "<p class=\"normal\"> This Regulation shall not prevent institutions from holding own funds and their components in excess of, or applying measures that are stricter than those required by this Regulation. </p>",
+          "name": "Art. 3 CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Application of stricter requirements by institutions",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ART_3/"
+        },
+        {
+          "body": "<p class=\"normal\"> 1. For the purposes of this Regulation, the following definitions shall apply: </p> <ol class=\"numbr\"><li>(1)  <span class=\"lxp-definition-term\"> credit institution </span> means an undertaking the business of which is to take deposits or other repayable funds from the public and to grant credits for its own account; </li> <li>(2)  <span class=\"lxp-definition-term\"> investment firm </span> means a person as defined in  point (1) of Article 4(1) of Directive 2004/39/EC  , which is subject to the requirements imposed by that Directive, excluding the following: <ol class=\"alpha\"><li>(a)   credit institution  s; </li> <li>(b)  local firms; </li> <li>(c)  firms which are not authorised to provide the ancillary service referred to in point (1) of Section B of  Annex I to Directive 2004/39/EC  , which provide only one or more of the investment services and activities listed in points 1, 2, 4 and 5 of Section A of  Annex I  to that Directive, and which are not permitted to hold money or securities belonging to their clients and which for that reason may not at any time place themselves in debt with those clients; </li> </ol><p class=\"normal\"> 2. Where reference in this Regulation is made to real estate or residential or commercial immovable property or a mortgage on such property, it shall include shares in Finnish residential housing companies operating in accordance with the Finnish Housing Company Act of 1991 or subsequent equivalent legislation. Member States or their competent authorities may allow shares constituting an equivalent indirect holding of real estate to be treated as a direct holding of real estate provided that such an indirect holding is specifically regulated in the national law of the Member State concerned and that, when pledged as collateral, it provides equivalent protection to creditors. </p> <p class=\"normal\"> 3. Trade finance as referred to in point (80) of paragraph 1 is generally uncommitted and requires satisfactory supporting transactional documentation for each drawdown request enabling refusal of the finance in the event of any doubt about credit-worthiness or the supporting transactional documentation. Repayment of trade finance exposures is usually independent of the borrower, the funds instead coming from cash received from importers or resulting from proceeds of the sales of the underlying goods. </p> </li> </ol>",
+          "name": "Art. 4 CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Definitions",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ART_4/"
+        },
+        {
+          "body": "<p class=\"normal\"> 1. This Regulation shall enter into force on the day following that of its publication in the <i> Official Journal of the European Union </i> . </p> <p class=\"normal\"> 2. This Regulation shall apply from 1 January 2014, with the exception of: </p> <ol class=\"alpha\"><li>(a)   Article 8(3)  ,  Article 21  and  Article 451(1)  , which shall apply from 1 January 2015; </li> <li>(b)   Article 413(1)  , which shall apply from 1 January 2016; </li> <li>(c)  the provisions of this Regulation that require the ESAs to submit to the Commission draft technical standards and the provisions of this Regulation that empower the Commission to adopt delegated acts or implementing acts, which shall apply from 31 December 2014. <div class=\"final\"> <p class=\"normal\"> This Regulation shall be binding in its entirety and directly applicable in all Member States. </p> <p class=\"normal\"> Done at Brussels, 26 June 2013. </p> <div class=\"signatory\"> <p class=\"signatory\"> <i> For the European Parliament </i> </p> <p class=\"signatory\"> <i> The President </i> </p> <p class=\"signatory\"> M. SCHULZ </p> </div> <div class=\"signatory\"> <p class=\"signatory\"> <i> For the Council </i> </p> <p class=\"signatory\"> <i> The President </i> </p> <p class=\"signatory\"> A. SHATTER </p> </div> </div> <hr class=\"footnote\"/></li> </ol>",
+          "name": "Art. 521 CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Entry into force and date of application",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ART_521/"
+        },
+        {
+          "body": "<ol class=\"numpt\"><li>1.  Full risk: <ol class=\"alpha\"><li>(a)  guarantees having the character of credit substitutes, (e.g. guarantees for the good payment of credit facilities); </li> <li>(b)  credit derivatives; </li> </ol></li> <li>2.  Medium risk: <ol class=\"alpha\"><li>(a)  trade finance off-balance sheet items, namely documentary credits issued or confirmed (see also <span class=\"lxp-definition-term\"> Medium/low risk </span> ); </li> <li>(b)  other off-balance sheet items: <ol class=\"roman\"><li>(i)  shipping guarantees, customs and tax bonds; </li> <li>(ii)  undrawn credit facilities (agreements to lend, purchase securities, provide guarantees or acceptance facilities) with an original maturity of more than one year; </li> </ol></li> </ol></li> </ol>",
+          "name": "ANNEX I CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Classification of off-balance sheet items",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ANX_I/"
+        },
+        {
+          "body": "<ol class=\"numpt\"><li>1.  Interest-rate contracts: <ol class=\"alpha\"><li>(a)  single-currency interest rate swaps; </li> <li>(b)  basis-swaps; </li> </ol></li> <li>2.  Foreign-exchange contracts and contracts concerning gold: <ol class=\"alpha\"><li>(a)  cross-currency interest-rate swaps; </li> <li>(b)  forward foreign-exchange contracts; </li> </ol></li> </ol>",
+          "name": "ANNEX II CRR \u2013 Regulation (EU) No 575/2013",
+          "title": "Types of derivatives",
+          "transaction_type": "insert",
+          "url": "https://lexparency.org/eu/CRR/ANX_II/"
+        }
+      ],
+      "bot_url": "https://lexparency.org/_botapi/CRR.json",
+      "date_document": "2013-06-26",
+      "id_local": "CRR",
+      "in_force": true,
+      "name": "CRR \u2013 Regulation (EU) No 575/2013",
+      "pop_acronym": "CRR",
+      "pop_title": "Capital Requirements Regulation",
+      "title": "Regulation (EU) No\u00a0575/2013 of the European Parliament and of the Council of 26\u00a0June 2013 on prudential requirements for credit institutions and investment firms and amending Regulation (EU) No\u00a0648/2012  Text with EEA relevance",
+      "url": "https://lexparency.org/eu/CRR/"
+    }
+  ],
+  "total_pages": 1
+}

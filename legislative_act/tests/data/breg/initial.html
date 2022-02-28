@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html
+    lang="en"
+    vocab="http://schema.org/"
+    prefix="eli: http://data.europa.eu/eli/ontology#
+            lxp: http://lexparency.org/ontology#"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta property="lxp:domain" content="eu" lang=""/>
+    <meta property="lxp:serial_number" content="1" datatype="xsd:integer"/>
+    <meta property="lxp:version" content="initial"/>
+    <meta property="eli:id_local" content="breg" lang=""/>
+    <meta property="eli:in_force" content="true" datatype="xsd:boolean"/>
+    <meta property="eli:title" content="On breakfast requirements for prudential gastronomy management" lang="en"/>
+    <meta property="eli:source_url" content="http://example.com/dummy1"/>
+    <meta property="eli:source_iri" content="http://example.com/dummy1/idi"/>
+    <meta property="lxp:pop_title" content="Breakfast Regulation" lang="en"/>
+    <meta property="eli:date_document" content="2016-04-27" datatype="xsd:date"/>
+    <meta property="eli:is_about" content="Personal data" lang="en"/>
+    <meta property="eli:is_about" content="Consumer rights" lang="en"/>
+    <meta property="eli:cites" resource="http://example.com/document1"/>
+    <meta about="http://example.com/document1" property="lxp:id_human" content="Document one"/>
+    <meta about="http://example.com/document1" property="eli:title" content="First Document Ever"/>
+    <meta property="eli:changes" resource="http://example.com/document2"/>
+    <meta about="http://example.com/document2" property="lxp:id_human" content="Document two"/>
+    <meta property="eli:passed_by" content="Council of the European Union" lang="en">
+    <meta property="eli:passed_by" content="European Parliament" lang="en">
+    <title>This element does not matter at all for parsing by DoQ</title>
+</head>
+<body>
+<article class="lxp-preamble" id="PRE" title="Preamble">
+    <p>This is the Preamble.</p>
+    <ol class="lxp-recitals">
+        <li data-title="(1)" class="lxp-recital">
+            We think that this legislation is necessary, just because
+        </li>
+        <li data-title="(2)" class="lxp-recital">
+            Whoever thinks that this is a stupid act is stupid self.
+        </li>
+        <li data-title="(3)" class="lxp-recital" title="Questionable content">
+            What are recitals good for anyway?
+        </li>
+    </ol>
+    have adopted the following act.
+</article>
+<div class="lxp-container" id="CHP_1">
+    <div class="lxp-heading">
+        <h3 class="lxp-ordinate">Chapter 1</h3>
+        <h4 class="lxp-title">General purpose and scope</h4>
+    </div>
+    <article class="lxp-article" id="ART_1">
+        <div class="lxp-heading">
+            <h3 class="lxp-ordinate">Article 1</h3>
+            <h4 class="lxp-title">Subject Matter and Scope</h4>
+        </div>
+        <div class="lxp-body">
+            <p>This regulation tells you what to eat in the morning.</p>
+        </div>
+    </article>
+    <article class="lxp-article" id="ART_2">
+        <div class="lxp-heading">
+            <h3 class="lxp-ordinate">Article 2</h3>
+            <h4 class="lxp-title">Definitions</h4>
+        </div>
+        <div class="lxp-body">
+            <p>For the purpose of this regulation, the following definition shall apply</p>
+            <ul>
+                <li data-title="(1)" id="ART_2-1" class="lxp-definition">
+                    The term <span class="lxp-definition-term">citizen</span> refers to any person with at least one nationality
+                    of an EU member state and whose permanent residence is in any member state.
+                </li>
+                <li data-title="(1)" id="ART_2-2" class="lxp-definition">
+                    <span class="lxp-definition-term">Breakfast</span> denotes the meal citizens are having in the morning.
+                    It is sometimes als referred to as <span class="lxp-definition-term">disjune</span>.
+                </li>
+            </ul>
+        </div>
+    </article>
+</div>
+<article class="lxp-article" id="ART_3">
+    <div class="lxp-heading">
+        <h3 class="lxp-ordinate">Article 3</h3>
+        <h4 class="lxp-title">Final</h4>
+    </div>
+    <div class="lxp-body">
+        <p>
+            This law shall be applicable from
+            <span property="eli:date_applicability" content="2017-02-03" datatype="xsd:date">February 3rd 2017</span>
+            onwards.
+        </p>
+    </div>
+</article>
+<article class="lxp-final" id="FIN">
+    <div class="lxp-heading">
+        <h3 class="lxp-ordinate">Final</h3>
+    </div>
+    <div class="lxp-body">
+        <p>
+            Actually, <a href="#ART_3">article 3</a> was not the actual final. But this is.
+        </p>
+    </div>
+</article>
+</body>
+</html>
