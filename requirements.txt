@@ -1,14 +1,14 @@
-lexref == 1.0
-Flask == 2.0.1
+lexref == 1.1
+Flask ==2.0.3
 Flask-Caching == 1.10.1
-werkzeug == 2.0.1
-Jinja2 == 3.0.1
+werkzeug ==2.0.3
+Jinja2 ==3.0.3
 rdflib == 4.2.2
 elasticsearch-dsl == 7.4.0
 elasticsearch == 7.14.1
-lxml == 4.6.3
+lxml ==4.8.0
 html5lib == 1.1
 SPARQLWrapper == 1.8.5
 keepalive == 0.5
-jsonschema == 3.2.0
-requests == 2.26.0
+jsonschema ==4.4.0
+requests ==2.27.1
