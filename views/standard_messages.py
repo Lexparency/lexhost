@@ -132,6 +132,7 @@ _standard_messages = {
         'nimpl': 'no implementado',
         'search_in_all_vs': 'buscar en todas versiones',
         'share': 'Compartir',
+        'github': 'visitar Lexparency en GitHub',
         'privacy_settings_link_text': 'Ajustes de Privacidad',
     },
     'en': {
@@ -264,6 +265,7 @@ _standard_messages = {
         'nimpl': 'not implemented',
         'search_in_all_vs': 'search in all versions',
         'share': 'Share',
+        'github': 'go to Lexparency on Github',
         'privacy_settings_link_text': 'Privacy Settings',
     },
     'de': {
@@ -398,6 +400,7 @@ _standard_messages = {
         'nimpl': 'nicht implementiert',
         'search_in_all_vs': 'In allen Versionen Suchen',
         'share': 'Teilen',
+        'github': 'Quellcode auf Github aufrufen',
         'privacy_settings_link_text': 'Einstellungen der Privatsphäre',
     }
 }
