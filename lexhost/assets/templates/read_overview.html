@@ -1,4 +1,5 @@
 {% extends 'base_sidebared.html' %}
+{% load static %}
 
 
 {% block meta %}
@@ -6,9 +7,10 @@
     <link rel="next" href="{{ next }}">
   {% endif %}
   <link rel="canonical" href="https://{{ messenger.this_domain }}{{ canonical_path }}">
-  {% if (cover.pop_title or cover.pop_acronym) and current_version %}
-  {% else %}
-    <meta name="robots" content="{{ 'noindex,' if not current_version }}nofollow" />
+  {% if not current_version or not cover.pop_title %}
+    {% if not current_version or not cover.pop_acronym %}
+      <meta name="robots" content="{% if current_version %}noindex,{% endif %}nofollow" />
+    {% endif %}
   {% endif %}
   <!-- ELI metadata properties -->
   <meta about="{{ cover.source_iri }}" typeof="eli:LegalResource" />
@@ -73,9 +75,9 @@
 {% endblock %}
 
 {% block script %}
-  {{ super() }}
+  {{ block.super }}
   <!-- build:js inline ../static/js/document_search.min.js -->
-  <script type="text/javascript" src="/static/js/document_search.js"></script>
+  <script type="text/javascript" src="{% static 'js/document_search.js' %}"></script>
   <!-- /build -->
   <!-- build:include ../templates/fragments/hypothesis_js.html --><!-- /build -->
 {% endblock %}

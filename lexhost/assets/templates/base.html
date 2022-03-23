@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="{{ messenger.language_2 }}" vocab="http://schema.org/" prefix="eli: http://data.europa.eu/eli/ontology#">
   <head id="head">
@@ -10,14 +11,14 @@
     {% block meta %}
     {% endblock %}
 
-    <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32" >
-    <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16" >
+    <link rel="icon" type="image/png" href="{% static 'favicon-32x32.png' %}" sizes="32x32" >
+    <link rel="icon" type="image/png" href="{% static 'favicon-16x16.png' %}" sizes="16x16" >
 
     <!-- build:css inline ../static/built.min.css -->
-    <link rel="stylesheet" href="/static/css/slick.css">
-    <link rel="stylesheet" href="/static/css/w3.css">
-    <link rel="stylesheet" href="/static/css/w3-theme-black.css">
-    <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/w3-theme-black.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <!-- /build -->
 
     <!-- build:include ../templates/fragments/ad_sence.html --><!-- /build -->
@@ -42,10 +43,9 @@
     {% endblock %}
 
    <!-- Google Page-Load test unfortunately complains that the CDNs for tippy and jquery have no cache information -->
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/tippy.all.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tippy.all.min.js' %}"></script>
     <!-- build:include ../templates/fragments/cookies_consent.html -->
-      {% include "fragments/cookies_consent.html" %}
     <!-- /build -->
     {% block script %}
     {% endblock %}

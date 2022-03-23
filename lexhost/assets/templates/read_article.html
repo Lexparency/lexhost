@@ -1,8 +1,9 @@
 {% extends 'base_sidebared.html' %}
+{% load static %}
 
 
 {% block meta %}
-  <meta name="robots" content="{{ 'noindex,' if not current_version }}nofollow">
+  <meta name="robots" content="{% if current_version %}noindex,{% endif %}nofollow">
   {# it is important to not allow other versions to be indexed. Otherwise,
      the crawler makes it's own decision. That is sometimes wrong. #}
   <link rel="canonical" href="https://{{ messenger.this_domain }}{{ canonical_path }}">
@@ -17,7 +18,7 @@
 
 
 {% block style %}
-  <link rel="stylesheet" href="/static/css/oj.css">
+  <link rel="stylesheet" href="{% static 'css/oj.css' %}">
 {% endblock %}
 
 
@@ -51,12 +52,12 @@
 
 
 {% block script %}
-  {{ super() }}
+  {{ block.super }}
   <!--suppress JSUnresolvedLibraryURL -->
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-  <script type="text/javascript" src="/static/js/jquery.hoverIntent.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.hoverIntent.min.js' %}"></script>
   <!-- build:js inline ../static/js/document_search.min.js -->
-  <script type="text/javascript" src="/static/js/document_search.js"></script>
+  <script type="text/javascript" src="{% static 'js/document_search.js' %}"></script>
   <!-- /build -->
   <!-- build:include ../templates/fragments/hypothesis_js.html --><!-- /build -->
 {% endblock %}

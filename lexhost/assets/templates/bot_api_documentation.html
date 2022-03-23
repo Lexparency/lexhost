@@ -40,7 +40,7 @@
         >https://lexparency.de/static/botapi_recents.schema.json</a></div>
       Eine Schema-Validierung findet Serverseitig statt.
       <p>Folgende Graphik soll die einzelnen Bestandteile der Antwort erklären:</p>
-      <img alt="Response example" src="/static/botapi/i.png">
+      <img alt="Response example" src="{% static 'botapi/i.png' %}">
 
       <h2>2 Die Dokument Abfrage</h2>
       Hierüber erhält man die eigentlichen aktualisierten Inhalte – worüber man
@@ -59,9 +59,9 @@
               href="https://lexparency.de/static/botapi_doc.schema.json"
         >https://lexparency.de/static/botapi_doc.schema.json</a></div>
       Folgende Graphik soll die Zusammensetzung der Antwort erklären:
-      <img alt="Single document response" src="/static/botapi/ii.png">
+      <img alt="Single document response" src="{% static 'botapi/ii.png' %}">
       <h3>2.1 Entsprechung zu den Suchtreffern auf deJure.org</h3>
-      <img alt="entsprechungen" src="/static/botapi/iii.png">
+      <img alt="entsprechungen" src="{% static 'botapi/iii.png' %}">
 
       <h2>3 Single-Step Option</h2>
         Statt die vollen aktualisierten Dokumente über die zwei Schritte abzufragen, kann man
@@ -70,7 +70,7 @@
         <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/recents.json?date_from=YYYY-MM-DD&page=P&single_step</div>
         In dem Fall werden nicht alle Artikel je dokument ausgegeben, sondern nur diejenigen mit
         einer Änderung. Die Art der Änderung wird in dem Attribute „transaction_type“ angegeben.
-      <img alt="Beispiel Single-step response" src="/static/botapi/iv.png">
+      <img alt="Beispiel Single-step response" src="{% static 'botapi/iv.png' %}">
       <p>
         In dem gezeigten Beispiel ist ein Artikel mit transaction_type = update dargestellt.
         Folgende drei Ausprägungen für transaction_type sind vorgesehen:
@@ -94,7 +94,7 @@ body, name und title enthalten. Also ausschließlich url.
       den status aller dokumente abfragen:
       <div class="w3-panel w3-pale-green" style="font-family: monospace;">https://lexparency.de/_botapi/dbmap.json</div>
       Die Antwort ist ein JSON Dokument von der folgenden Form:
-      <img alt="Response der Status Abfrage" src="/static/botapi/v.png">
+      <img alt="Response der Status Abfrage" src="{% static 'botapi/v.png' %}">
     </div>
   </div>
   {% include 'fragments/footer_base.html' %}

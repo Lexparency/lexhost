@@ -1,7 +1,8 @@
+{% load static %}
 <nav class="w3-top">
   <div class="w3-bar w3-theme w3-left-align w3-large">
-    <a rel="nofollow" href="/" class="w3-bar-item w3-padding-large w3-button w3-margin-left">
-      <img alt="Logo inverted colors" width="25px" height="25px" src="/static/icons/logo_white.svg">
+    <a rel="nofollow" href="{% url 'home' %}" class="w3-bar-item w3-padding-large w3-button w3-margin-left">
+      <img alt="Logo inverted colors" width="25px" height="25px" src="{% static 'icons/logo_white.svg' %}">
       {{ messenger.This_Domain }}
     </a>
     {% block extra_navs %}

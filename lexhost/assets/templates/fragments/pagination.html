@@ -1,5 +1,6 @@
+{% load static %}
 <div id="pagination" class="w3-medium w3-left w3-bar-item">
-  <img width="18px" height="18px" src="/static/icons/copy-black.svg" alt="{{ messenger.pages }}" style="margin-right: 5px">
+  <img width="18px" height="18px" src="{% static 'icons/copy-black.svg' %}" alt="{{ messenger.pages }}" style="margin-right: 5px">
   {% for page in hits.pages %}
     {% if page.role == 'i' %}
       <a rel="nofollow" href="{{ page.href }}" class="w3-button w3-round-large">{{ page.page }}</a>
@@ -10,7 +11,7 @@
         <img
           width="14px"
           height="16px"
-          src="/static/icons/chevron-left-grey.svg"
+          src="{% static 'icons/chevron-left-grey.svg' %}"
           aria-hidden="true"
           alt="{{ messenger.previous }}">
       </a>
@@ -19,7 +20,7 @@
         <img
           width="14px"
           height="16px"
-          src="/static/icons/chevron-right-grey.svg"
+          src="{% static 'icons/chevron-right-grey.svg' %}"
           aria-hidden="true"
           alt="{{ messenger.next }}">
       </a>

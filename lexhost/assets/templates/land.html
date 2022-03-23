@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block meta %}
   <link rel="canonical" href="https://{{ messenger.this_domain }}/">  {# So search engines strip off possible url-parameters from social network sites etc. #}
@@ -19,7 +20,7 @@
       <div class="w3-panel w3-padding-16 w3-leftbar w3-theme-l5">
         <div class="w3-row">
           <div class="w3-container lxp-sixth w3-hide-small">
-            <img src="/static/lexparency_transparent.svg"
+            <img src="{% static 'lexparency_transparent.svg' %}"
               alt="Lexparency Logo"
               width="100px" height="100px">
           </div>
@@ -42,7 +43,7 @@
               title="{{ messenger.eu_datathon_info }}"
               class="lexttip">
               <img
-                src="/static/2018 - eudatathon_TWITTER-winner.png"
+                src="{% static '2018 - eudatathon_TWITTER-winner.png' %}"
                 alt="{{ messenger.eu_datathon_info }}"
                 style="max-width:90%">
             </a>
@@ -61,7 +62,7 @@
           <div id="featured-acts" class="land-featured">
             {% for item in featured_acts %}
               <div class="w3-col l4 m6 s12">
-                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="{% static 'icons/filled-circle-black.svg' %}">
                 <a href="/eu/{{ item.id_local }}">
                   {{ item.title }}
                 </a>
@@ -71,19 +72,19 @@
           <div id="covid-acts" class="w3-hide land-featured">
             {% for item in covid_acts %}
               <div class="w3-col">
-                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="{% static 'icons/filled-circle-black.svg' %}">
                 <a href="{{ item.href }}">{{ item.title|safe }}</a>
               </div>
             {% endfor %}
             <div class="w3-col">
-              <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+              <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="{% static 'icons/filled-circle-black.svg' %}">
               <a rel="nofollow" href="/eu/search?search_words=covid&page=2">{{ messenger.more }} ...</a>
             </div>
           </div>
           <div id="recent-acts" class="w3-hide land-featured">
             {% for item in recent_acts %}
               <div class="w3-col w3-threequarter">
-                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="/static/icons/filled-circle-black.svg">
+                <img style="margin-bottom: 3px" alt="-" width="11" height="11" src="{% static 'icons/filled-circle-black.svg' %}">
                 <a href="{{ item.href }}">{{ item.title|safe }}</a>
               </div>
               {% if item.transaction_type == 'new' %}
@@ -111,7 +112,7 @@
 
 {% block script %}
   <!-- build:js inline ../static/js/slick.min.js -->
-    <script type="text/javascript" src="/static/js/slick.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
   <!-- /build -->
   <script type="text/javascript">
     $(function() {

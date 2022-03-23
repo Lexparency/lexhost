@@ -1,8 +1,9 @@
+{% load static %}
 <form method="get" class="w3-medium" action="{{ r_path }}">
   <div id="search-words-bar" class="w3-bar w3-border w3-round-large">
     <button id="toggle-filters" class="w3-bar-item w3-button w3-left w3-border-right lexttip"
             title="{{ messenger.toggle_search_filter }}">
-      <img width="16px" height="16px" src="/static/icons/filter.svg" alt="Filter">
+      <img width="16px" height="16px" src="{% static 'icons/filter.svg' %}" alt="Filter">
     </button>
     <input id="search-words-form" class="w3-bar-item w3-input" {{ form.search_words|safe }}
            title="{{ messenger.enter_search_words }}"
@@ -10,10 +11,10 @@
            name="search_words"
            type="text" maxlength="128">
     <button id="search-form-submit" onclick="searchFormSubmit()" class="w3-bar-item w3-button w3-right" type="submit">
-      <img width="16px" height="16px" src="/static/icons/search.svg" alt="Search">
+      <img width="16px" height="16px" src="{% static 'icons/search.svg' %}" alt="Search">
     </button>
     <button id="erase-search-words" class="w3-bar-item w3-button w3-right" type="button">
-      <img width="16px" height="16px" src="/static/icons/remove-black.svg" alt="X">
+      <img width="16px" height="16px" src="{% static 'icons/remove-black.svg' %}" alt="X">
     </button>
   </div>
   <div id="search-filter" class="{{ filter_visibility }}">

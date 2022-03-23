@@ -1,3 +1,4 @@
+{% load static %}
 {% if messenger.lang_2 == 'de' %}
   <h4 class="w3-container">Lexparency unterstützen:</h4>
   <div class="w3-row w3-margin-left">
@@ -9,10 +10,10 @@
     <div style="padding:2px" class="w3-col s4"><a href="mailto:mail@{{ messenger.this_domain }}">Schreiben</a></div>
     <div style="padding:2px" class="w3-col s4">Teilen:</div>
     <div style="padding:2px" class="w3-col s6">
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="/static/icons/xing.svg" alt="Xing"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="/static/icons/linkedIn.svg" alt="LinkedIn"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="/static/icons/facebook.svg" alt="facebook"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="/static/icons/twitter.svg" alt="twitter"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/xing.svg' %}" alt="Xing"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="{% static 'icons/linkedIn.svg' %}" alt="LinkedIn"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="{% static 'icons/facebook.svg' %}" alt="facebook"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/twitter.svg' %}" alt="twitter"></a>
     </div>
   </div>
 {% elif messenger.lang_2 == 'es' %}
@@ -26,10 +27,10 @@
     <div style="padding:2px" class="w3-col s4"><a href="mailto:mail@{{ messenger.this_domain }}">Escribir</a></div>
     <div style="padding:2px" class="w3-col s4">Compartir:</div>
     <div style="padding:2px" class="w3-col s6">
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="/static/icons/xing.svg" alt="Xing"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="/static/icons/linkedIn.svg" alt="LinkedIn"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="/static/icons/facebook.svg" alt="facebook"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="/static/icons/twitter.svg" alt="twitter"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/xing.svg' %}" alt="Xing"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="{% static 'icons/linkedIn.svg' %}" alt="LinkedIn"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="{% static 'icons/facebook.svg' %}" alt="facebook"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/twitter.svg' %}" alt="twitter"></a>
     </div>
   </div>
 {% else %}
@@ -43,10 +44,10 @@
     <div style="padding:2px" class="w3-col s4"><a href="mailto:mail@{{ messenger.this_domain }}">Send Feedback</a></div>
     <div style="padding:2px" class="w3-col s4">Share:</div>
     <div style="padding:2px" class="w3-col s6">
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="/static/icons/xing.svg" alt="Xing"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="/static/icons/linkedIn.svg" alt="LinkedIn"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="/static/icons/facebook.svg" alt="facebook"></a>
-      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="/static/icons/twitter.svg" alt="twitter"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.xing.com/social_plugins/share?url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/xing.svg' %}" alt="Xing"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}"><img width="25px" height="25px" src="{% static 'icons/linkedIn.svg' %}" alt="LinkedIn"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><img width="25px" height="25px" src="{% static 'icons/facebook.svg' %}" alt="facebook"></a>
+      <a target="_blank" class="lxp-share-button-2 w3-theme-l2 w3-round-medium" rel="nofollow" href="https://twitter.com/intent/tweet?&url={{ url }}"><img width="25px" height="25px" src="{% static 'icons/twitter.svg' %}" alt="twitter"></a>
     </div>
   </div>
 {% endif %}

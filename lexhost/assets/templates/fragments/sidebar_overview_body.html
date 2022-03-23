@@ -1,9 +1,10 @@
+{% load static %}
 <div id="sidebarBodyOverview">
   <div class="w3-bar-block">
     <div id="document-metadata">
       <div class="w3-bar-item w3-theme-light lxp-meta-head">
         <a href="#" class="w3-theme-light">
-          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
           {{ messenger.timeline }}
         </a>
       </div>
@@ -32,7 +33,7 @@
     {% if nationals.cover %}
       <div class="w3-bar-item w3-theme-light lxp-meta-head">
         <a href="#" class="w3-theme-light">
-          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
           {{ messenger.backref_laws_heading }}:
         </a>
       </div>
@@ -41,7 +42,7 @@
           {% for national in nationals.cover %}
             <li class="w3-container nat-ref-list toc-node">
               <a href="#" class="w3-theme-light">
-                <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+                <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
                   {{ national.country_name }}
               </a>
               <ul class="w3-ul" style="text-indent: 1em">
@@ -53,7 +54,7 @@
                           {% if target.title %}
                             title="{{ target.title }}" class="lexttip"
                           {% endif %}>
-                          {{ platform.name }}</a>{{ "," if not loop.last }}
+                          {{ platform.name }}</a>{% if not forloop.last %},{% endif %}
                       {% endfor %}
                     </li>
                   {% else %}
@@ -76,7 +77,7 @@
     {% if cover.passed_by %}
       <div class="w3-bar-item w3-theme-light lxp-meta-head">
         <a href="#" class="w3-theme-light">
-          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
           {{ messenger.passed_by }}
         </a>
       </div>
@@ -89,7 +90,7 @@
     {% for ref in cover.referrers %}
       <div class="w3-bar-item w3-theme-light lxp-meta-head">
         <a href="#" class="w3-theme-light">
-          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
           {{ ref.label }}:
         </a>
       </div>
@@ -106,7 +107,7 @@
                    href="{{ anchor.href }}">
                   {{ anchor.text }}
                 </a>
-                {% if anchor.implemented in (true, false) %}
+                {% if anchor.implemented == true or anchor.implemented == false %}
                   <button class="lxp-dummy-button lxp-minibutton lexttip"
                   {% if anchor.implemented %}
                     title="{{ messenger.reference_implemented }}"
@@ -117,10 +118,10 @@
                   <img height="10px" width="10px"
                     {% if anchor.implemented %}
                       alt="{{ messenger.impl }}"
-                      src="/static/icons/check-circle.svg"
+                      src="{% static 'icons/check-circle.svg' %}"
                     {% else %}
                       alt="{{ messenger.nimpl }}"
-                      src="/static/icons/cross-circle.svg"
+                      src="{% static 'icons/cross-circle.svg' %}"
                     {% endif %}>
                   </button>
                 {% endif %}
@@ -134,7 +135,7 @@
     {% if cover.is_about %}
       <div class="w3-bar-item w3-theme-light lxp-meta-head">
         <a href="#" class="w3-theme-light">
-          <img src="/static/icons/minus-square-o.svg" class="lex-fold-icon" alt="minus">
+          <img src="{% static 'icons/minus-square-o.svg' %}" class="lex-fold-icon" alt="minus">
           {{ messenger.is_about }}
         </a>
       </div>

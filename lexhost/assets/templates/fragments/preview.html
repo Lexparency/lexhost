@@ -1,9 +1,10 @@
+{% load static %}
 <div id="preview" style="display:none">
   <div id="preview-loading">
     Loading preview<br>
     <img
       id="loading-img"
       alt="{{ messenger.loading }}"
-      src="/static/loading.gif">
+      src="{% static 'loading.gif' %}">
   </div>
 </div>

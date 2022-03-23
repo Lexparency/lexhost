@@ -1,9 +1,10 @@
+{% load static %}
 <h5>{{ messenger.languages }}</h5>
 <div class="w3-bar-block" style="max-height:70vh;overflow-y:auto">
 {% for item in languages_and_domains %}
   {% if item.lang_short != messenger.language_2 %}
-    <a href="https://{{ item.domain }}{{ int_canonical_path if int_canonical_path is not none else '/' }}" class="w3-bar-item w3-button">
-      <img width="15" height="15" src="/static/icons/flag-{{ item.lang_short }}.svg" alt="{{ item.display }}" class="w3-margin-right">
+    <a href="https://{{ item.domain }}{% if int_canonical_path is not none %}{{ int_canonical_path }}{% else %}'/'{% endif %}" class="w3-bar-item w3-button">
+      <img width="15" height="15" src="{% static 'icons/flag-{{ item.lang_short }}.svg' %}" alt="{{ item.display }}" class="w3-margin-right">
       {{ item.display }}
     </a>
   {% endif %}

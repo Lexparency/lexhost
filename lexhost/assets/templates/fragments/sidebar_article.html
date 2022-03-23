@@ -1,3 +1,4 @@
+{% load static %}
 <div id="sidebarHead">
   {% include 'fragments/sidebar_head_head.html' %}
   <div class="lxp-sidebar-head-body">
@@ -31,7 +32,7 @@
   </div>
   <div id="preview-body" class="w3-bar-item w3-medium w3-hide">
     {# Icon from https://icons8.com/preloaders/ #}
-    <img id="loading-img" alt="{{ messenger.loading }}" class="w3-hide" src="/static/loading.gif">
+    <img id="loading-img" alt="{{ messenger.loading }}" class="w3-hide" src="{% static 'loading.gif' %}">
     <div id="preview-body-loaded"></div>
   </div>
 </div>

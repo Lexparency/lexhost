@@ -2,7 +2,7 @@
   <div class="w3-bar-item">
     <a class="w3-left"
        style="text-decoration: none"
-       href="/{{ cover.domain }}/{{ document_id }}{{ '/TOC' if version != '' else '' }}/{{ version }}">
+       href="/{{ cover.domain }}/{{ document_id }}{% if version != '' %}/TOC{% endif %}/{{ version }}">
        {% if cover.id_human is defined %}
          {{ cover.id_human }}
        {% else %}

@@ -1,7 +1,8 @@
+{% load static %}
 <footer>
   <div id="shares" class="w3-container w3-theme-l2 w3-padding-32 w3-xlarge lxp-shareList">
     <a rel="nofollow" href="mailto:mail@{{ messenger.this_domain }}">
-      <img width="25px" height="25px" src="/static/icons/envelope.svg" alt="Email">
+      <img width="25px" height="25px" src="{% static 'icons/envelope.svg' %}" alt="Email">
     </a>
     {% include 'fragments/share_list_1.html' %}
     <span class="w3-right w3-medium w3-margin-left">

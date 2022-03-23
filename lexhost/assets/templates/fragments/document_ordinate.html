@@ -1,4 +1,4 @@
-<a href="/{{ cover.domain }}/{{ document_id }}{{ '/TOC' if version != '' else '' }}/{{ version }}"
+<a href="/{{ cover.domain }}/{{ document_id }}{% if version != '' %}/TOC{% endif %}/{{ version }}"
    class="w3-button lexttip w3-round" title="{{ document_title }}">
   {% if cover.id_human is defined %}
     {{ cover.id_human }}

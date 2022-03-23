@@ -1,10 +1,11 @@
+{% load static %}
 {% if neighbours.left is not none %}
   <a href="/{{ cover.domain }}/{{ document_id }}/{{ neighbours.left.id }}/{{ version }}"
      title="{{ neighbours.left.ordinate }}" class="w3-button w3-round lexttip">
     <img
       width="12px"
       height="12px"
-      src="/static/icons/chevron-left-grey.svg"
+      src="{% static 'icons/chevron-left-grey.svg' %}"
       aria-hidden="true"
       alt="{{ messenger.previous }}">
   </a>
@@ -18,7 +19,7 @@
     <img
       width="12px"
       height="12px"
-      src="/static/icons/chevron-right-grey.svg"
+      src="{% static 'icons/chevron-right-grey.svg' %}"
       aria-hidden="true"
       alt="{{ messenger.next }}">
   </a>

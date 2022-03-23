@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
     <meta name="robots" content="noindex,nofollow">
@@ -15,9 +16,9 @@
           onclick="w3_close()"
           class="w3-button w3-hover-gray w3-hide-large"
           title="{{ messenger.close_menu }}">
-          <img width="25px" height="25px" src="/static/icons/remove-white.svg" alt="{{ messenger.go_back }}">
+          <img width="25px" height="25px" src="{% static 'icons/remove-white.svg' %}" alt="{{ messenger.go_back }}">
         </a>
-        <a class="w3-button w3-large" href="/">{{ messenger.This_Domain }}</a>
+        <a class="w3-button w3-large" href="{% url 'home' %}">{{ messenger.This_Domain }}</a>
       </div>
       <form class="w3-bar-item w3-medium" method="get" action="{{ r_path }}">
         <div class="w3-bar w3-border w3-round-large w3-white">
@@ -30,7 +31,7 @@
             name="search_words"
             type="text">
           <button class="w3-button w3-right" type="submit">
-            <img width="16px" height="16px" src="/static/icons/search.svg" alt="Search">
+            <img width="16px" height="16px" src="{% static 'icons/search.svg' %}" alt="Search">
           </button>
         </div>
         <div class="w3-padding">
@@ -79,10 +80,10 @@
       <img
         width="25px"
         height="25px"
-        src="/static/icons/align-left-white.svg"
+        src="{% static 'icons/align-left-white.svg' %}"
         alt="{{ messenger.contents_table }}">
     </a>
-    <a href="/" class="w3-bar-item w3-button">{{ messenger.This_Domain }}</a>
+    <a href="{% url 'home' %}" class="w3-bar-item w3-button">{{ messenger.This_Domain }}</a>
     {# <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a> #}
   </div>
 
@@ -124,10 +125,10 @@
 
 {% block script %}
   <!-- build:js inline ../static/js/sidebar.min.js -->
-    <script type="text/javascript" src="/static/js/sidebar.js"></script>
+    <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
   <!-- /build -->
   <!-- build:js inline ../static/js/document_search.min.js -->
-    <script type="text/javascript" src="/static/js/document_search.js"></script>
+    <script type="text/javascript" src="{% static 'js/document_search.js' %}"></script>
   <!-- /build -->
   <script type="text/javascript">
     $(window).on('load', function () {
