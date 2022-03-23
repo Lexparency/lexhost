@@ -4,12 +4,12 @@ from functools import lru_cache, reduce
 import re
 from html import escape
 
-from flask import render_template
+from django.template import loader
 from lxml import etree as et
 from elasticsearch.exceptions import NotFoundError
 
-from settings import LANG_2
-from views.exceptions import convert_exception
+from lexhost.settings import LANG_2
+from lexhost.apps.exceptions import convert_exception
 
 from .toccordior import ContentsTable
 from . import model as doc
@@ -212,8 +212,8 @@ class DocumentProvider(Clearable):
             ids = ['-'.join(p[:k+1]) for k in range(1, len(p))]
             l2n = self.toc(version).locator_to_node()
             nodes = [l2n[id_]['heading'] for id_ in ids]
-            return render_template('fragments/toc_snippet.html',
-                                   nodes=nodes, title=self.title)
+            return loader.render_to_string('fragments/toc_snippet.html',
+                                           {'nodes': nodes, 'title': self.title})
         article = self.render_article_body(fragment_id, version)
         if snippet == '0':
             article_snippet()
