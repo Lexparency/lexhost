@@ -6,11 +6,8 @@ gruntjs/node_modules/
 elasticdump/
 elasticsearch/
 es_backup/
-/static/panels/right_pane_hoodie_graumeliert_herren.png
-/static/panels/right_pane_hoody_schwarz_damen.png
-/static/panels/right_pane_shirt_graumeliert_herren.png
-/static/panels/right_pane_shirt_schwarz_damen.png
 .idea/
 dummy.py
 *.jsons
-*.tar.gz
+*.tar.gzdb.sqlite3
+lex.sqlite3

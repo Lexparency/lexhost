@@ -1,29 +1,18 @@
-import os
-import logging
+from pathlib import Path
 
-from werkzeug.exceptions import Gone
+from django.http import HttpResponseGone
 
 LANG_2 = 'en'
-
-DEBUG = True
-
 INTERNET_DOMAIN = 'lexparency.org'
 DEFAULT_IRI = f'https://{INTERNET_DOMAIN}'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = Path(__file__).resolve().parent
 
 CACHE_CONFIG = {
     'CACHE_TYPE': 'simple',
     'CACHE_DEFAULT_TIMEOUT': 30
 }
-
-FORMAT = '%(levelname)s %(asctime)s %(module)s.%(funcName)s: %(message)s'
-
-logging.basicConfig(
-    format=FORMAT,
-    level=logging.WARNING,
-)
 
 FEATURED = {'eu': ('32016R0679', '32013R0575')}
 
@@ -49,13 +38,11 @@ LANGUAGE_DOMAIN = [
     {'lang_short': 'en', 'domain': 'lexparency.org', 'display': 'English'},
 ]
 
-BACKREF_DATA_PATH = os.path.join(os.path.dirname(__file__), 'backrefs.json')
-
 DEAD_SIMPLE_REDIRECTS = {  # Legacy handling again
     # '/eu/TFEU/': 'https://eur-lex.europa.eu/legal-content/DE/ALL/?uri=CELEX:11957E/TXT',
     '/eu/Regulation_EU_640-2014/': '/eu/32014R0640/',
     '/eu/wtf': '/eu/32013R0575/',
-    '/contact_us.php': Gone('/contact_us.php')
+    '/contact_us.php': HttpResponseGone('/contact_us.php')
 }
 
 DIAMONDS = {
