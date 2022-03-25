@@ -3,18 +3,19 @@ from datetime import date
 import logging
 import re
 
-from flask import Flask, render_template, request, redirect, make_response
-from werkzeug.exceptions import NotFound, Gone
-from werkzeug.urls import url_encode
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, redirect
+from django.urls import path
 
-from views.exceptions import handle_as_404
-from views.nationals import get_nationals
 from legislative_act.utils.language_generation import human_date
 from legislative_act.utils.generics import Clearable, Singleton
 from legislative_act.provider import DocumentProvider
 from legislative_act import model as dm
 
-from .standard_messages import standard_messages
+from .exceptions import handle_as_404
+from .nationals import get_nationals
+
+from lexhost.standard_messages import standard_messages
 
 from settings import LANG_2, LANGUAGE_DOMAIN, DIAMONDS
 
@@ -204,33 +205,26 @@ class Read(Clearable, metaclass=Singleton):
         return snippet(domain, id_local, fragment_id, hidden_version, snip)
 
     @handle_as_404
-    def _call(self, domain, id_local, sub_id, version):
+    def _call(self, request, domain, id_local, sub_id, version):
         """ Backend for the actual __call__ method.
             WARNING: This method should not be cached, since it
                 makes use of the global variable "request"!
         """
-        data = {'url': request.url, 'sub_id': sub_id, 'version': version}
+        data = {'url': request.build_absolute_uri(),
+                'sub_id': sub_id, 'version': version}
         if sub_id == 'TOC':
             data.update(self.overview(domain, id_local, version))
         else:
             data.update(self.article(domain, id_local, sub_id, version))
         return data
 
-    @staticmethod
-    def _document_id_gone(document_id):
-        """ Basically legacy handling for lexparency.org """
-        if document_id.startswith('Regulation_') \
-                or document_id.startswith('Directive_'):
-            raise Gone(document_id)
-
-    def __call__(self, domain, document_id, sub_id=None, version=None):
+    def __call__(self, request, domain, document_id, sub_id=None, version=None):
         """ Just a pass-through to allow decoration at __init__
             For the scope of this module, the version-ID "latest" actually
             means "default"-version, which is currently implemented as
             latest available version whose date_document lies in the past.
         """
         r_version = version  # subject to overrides, but need original later
-        self._document_id_gone(document_id)
         forwarding = (version == 'latest') \
             or (sub_id == 'TOC' and version in ('latest', None))
         id_local = self.diamonds.get_canonical(document_id)
@@ -260,20 +254,20 @@ class Read(Clearable, metaclass=Singleton):
                     forwarding = True
         sub_id = sub_id or 'TOC'
         version = version or 'latest'
-        if 'snippet' in request.args:
-            return make_response(
+        if 'snippet' in request.GET:
+            return HttpResponse(
                 self.snippet(domain, id_local, sub_id,
-                             version, request.args['snippet']))
+                             version, request.GET['snippet']))
         if sub_id != 'TOC' and version == 'latest':
             dp = dp_get(domain, id_local)
             leaf_versions = dp.get_leaf_versions(sub_id)
             if not leaf_versions:
-                raise NotFound(
+                raise Http404(
                     f'Could not find {domain}, {id_local}, {sub_id}.')
             if dp.current not in leaf_versions:
                 version = leaf_versions[-1]
                 forwarding = True
-        result = self._call(domain, id_local, sub_id, version)
+        result = self._call(request, domain, id_local, sub_id, version)
         if version == 'latest' and result['version'] is None:
             # none available
             result['version'] = 'latest'
@@ -283,27 +277,28 @@ class Read(Clearable, metaclass=Singleton):
         result.update(self.get_paths(domain, document_id, sub_id, version))
         if forwarding:
             target_url = result['standard_path']
-            if len(request.args) > 0:
-                target_url += '?' + url_encode(request.args)
+            if len(request.GET) > 0:
+                target_url += '?' + request.GET.urlencode()
             return redirect(
-                target_url, code=self.get_redirect_code(r_version, version))
+                target_url,
+                permanent=self.is_redirect_permanent(r_version, version))
         result['languages_and_domains'] = LANGUAGE_DOMAIN
         result['document_id'] = document_id
         result['nationals'] = get_nationals(domain, id_local, sub_id)
         if result['version'] == 'latest':
             result['version'] = ''
         if sub_id == 'TOC':
-            return render_template('read_overview.html', **result)
-        return render_template('read_article.html', **result)
+            return render(request, 'read_overview.html', result)
+        return render(request, 'read_article.html', result)
 
     @staticmethod
-    def get_redirect_code(request_version, target_version):
+    def is_redirect_permanent(request_version, target_version):
         if target_version == 'latest':
-            return 301
+            return True
         elif request_version in (None, 'latest') \
                 and request_version != target_version:
-            return 307
-        return 301
+            return False
+        return True
 
     @staticmethod
     def get_canonical_path(domain, document_id, sub_id):
@@ -330,11 +325,13 @@ class Read(Clearable, metaclass=Singleton):
                 self.get_int_canonical_path(domain, document_id, sub_id)}
 
     @classmethod
-    def register(cls, app: Flask):
+    def register(cls, urlpatterns: list):
         self = cls()
-        app.route('/<domain>/<document_id>/<sub_id>/<version>')(self)
-        app.route('/<domain>/<document_id>/<sub_id>/')(self)
-        app.route('/<domain>/<document_id>/')(self)
+        urlpatterns.extend([
+            path('<slug:domain>/<slug:document_id>/<slug:sub_id>/<slug:version>', self),
+            path('<slug:domain>/<slug:document_id>/<slug:sub_id>/', self),
+            path('<slug:domain>/<slug:document_id>/', self),
+        ])
 
     @classmethod
     def clear_all_caches(cls):

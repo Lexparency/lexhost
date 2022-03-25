@@ -14,7 +14,7 @@ from legislative_act.model import Cover
 from legislative_act.provider import DocumentProvider
 from legislative_act.searcher import display_dictionary
 from settings import LANG_2
-from views.exceptions import convert_exception
+from ..exceptions import convert_exception
 
 LANG = LANG_2.upper()
 

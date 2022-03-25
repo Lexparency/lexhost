@@ -6,9 +6,11 @@ import logging
 
 from legislative_act import model as dm
 from legislative_act.history import DocumentHistory
-from settings import INTERNET_DOMAIN, DEBUG, FEATURED
-from views.land import get_featured
-from views.read import Diamonds
+from ..settings import INTERNET_DOMAIN, DEBUG, FEATURED
+from .land import get_featured
+from .read import Diamonds
+
+from django.http import HttpResponse
 
 PROTOCOL = 'https'
 
@@ -43,6 +45,7 @@ class SiteMap(list):
 
     def to_xml(self, max_size=1000):
         max_size = min(max_size, len(self))
+        # noinspection HttpUrlsUsage
         sitemap = et.Element(
             'urlset', {'xmlns': "http://www.sitemaps.org/schemas/sitemap/0.9"})
         self.sort(key=attrgetter('priority'), reverse=True)
@@ -93,6 +96,15 @@ class SiteMap(list):
             pretty_print=DEBUG,  # only for testing and development.
             method='xml',
             xml_declaration=True
+        )
+
+
+def view(_):
+    return HttpResponse(
+            content=SiteMap.build('eu').dump().decode('ascii'),
+            content_type='text/xml; charset=utf-8',
+            status=200,
+            headers={'mimetype': 'application/xml'}
         )
 
 

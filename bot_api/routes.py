@@ -1,33 +1,26 @@
 from datetime import date
+from django.http import JsonResponse
 
-from flask import Blueprint, request, jsonify
-
-from bot_api.views import LatestHistories, DocumentBot
-from views.dbmap import HistoryList
+from .views import LatestHistories, DocumentBot
+from ..dbmap import HistoryList
 
 
-def create_botapi(cachier=None):
-    botapi = Blueprint('botapi', __name__)
+# @botapi.route('/dbmap.json')
+def dbmap(request):
+    only_availables = request.GET.get('only_availables') not in (None, 'False', '0')
+    hl = HistoryList(only_availables)
+    return JsonResponse(hl.scan())
 
-    def dbmap():
-        only_availables = request.args.get('only_availables') not in (None, 'False', '0')
-        hl = HistoryList(only_availables)
-        return jsonify(hl.scan())
 
-    if cachier is not None:
-        dbmap = cachier(dbmap)
-    botapi.route('/dbmap.json')(dbmap)
+# @botapi.route('/recents.json')
+def recents(request):
+    single_step = request.GET.get('single_step') not in (None, 'False', '0')
+    date_from = request.GET.get('date_from', date.today())
+    page = int(request.GET.get('page', 1))
+    lh = LatestHistories(date_from, single_step)
+    return JsonResponse(lh.get_page(page))
 
-    @botapi.route('/recents.json')
-    def recents():
-        single_step = request.args.get('single_step') not in (None, 'False', '0')
-        date_from = request.args.get('date_from', date.today())
-        page = int(request.args.get('page', 1))
-        lh = LatestHistories(date_from, single_step)
-        return jsonify(lh.get_page(page))
 
-    @botapi.route('/<id_local>.json')
-    def botapi_get_document(id_local):
-        return jsonify(DocumentBot('eu', id_local).get())
-
-    return botapi
+# @botapi.route('/<id_local>.json')
+def botapi_get_document(_, id_local):
+    return JsonResponse(DocumentBot('eu', id_local).get())

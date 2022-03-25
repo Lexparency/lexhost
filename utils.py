@@ -1,12 +1,12 @@
 from functools import wraps
 from typing import Dict, Union
 
-from flask import request, redirect, Flask
-from werkzeug.exceptions import Forbidden
+from django.core.exceptions import PermissionDenied
+
 
 from legislative_act.history import DocumentHistory
-from settings import TRUSTED_HOSTS, DEAD_SIMPLE_REDIRECTS
-from views.exceptions import handle_as_404
+from settings import TRUSTED_HOSTS
+from .apps.exceptions import handle_as_404
 
 
 def check_trustworthy(f):
@@ -15,9 +15,9 @@ def check_trustworthy(f):
     https://security.stackexchange.com/questions/37481/
     """
     @wraps(f)
-    def mistrust(*args, **kwargs):
+    def mistrust(request, *args, **kwargs):
         if request.remote_addr not in TRUSTED_HOSTS:
-            raise Forbidden('You should not do that!')
+            raise PermissionDenied('You should not do that!')
         return f(*args, **kwargs)
     return mistrust
 

@@ -1,55 +1,70 @@
-from pathlib import Path
+import logging
 
 from django.http import HttpResponseGone
 
-LANG_2 = 'en'
-INTERNET_DOMAIN = 'lexparency.org'
-DEFAULT_IRI = f'https://{INTERNET_DOMAIN}'
+from settings import *
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).resolve().parent
+DEBUG = True
 
-CACHE_CONFIG = {
-    'CACHE_TYPE': 'simple',
-    'CACHE_DEFAULT_TIMEOUT': 30
-}
+ALLOWED_HOSTS = ['*']  # TODO: Need to be changed for production
+DEFAULT_FROM_EMAIL = 'mail@' + INTERNET_DOMAIN
+ROOT_URLCONF = 'lexhost.urls'
+APPEND_SLASH = True
 
-FEATURED = {'eu': ('32016R0679', '32013R0575')}
-
-BACKLINKS = [
-    'https://lexparency.org/eu/32002F0584/ART_4/latest',
-    'https://lexparency.org/eu/32002F0584/TOC/latest',
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / 'lexhost' / 'assets' / 'templates'
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 
-BOTAPI = '_botapi'
-DUMP_PATH = r'C:\Users\Martin\lexparency\doq\botapi_dump'
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# STATIC_ROOT = BASE_DIR / 'lexhost/assets/static-dist')
+STATIC_URL = '/static/'
 
-FILTER_TYPES = {
-    # TODO: FILTER_TYPES are currently hard coded in the search interface.
-    #  Use this configuration instead.
-    "REG": "Regulation",
-    "DIR": "Directive",
-}
-
-TRUSTED_HOSTS = ['127.0.0.1', 'localhost']
-
-LANGUAGE_DOMAIN = [
-    {'lang_short': 'de', 'domain': 'lexparency.de', 'display': 'Deutsch'},
-    {'lang_short': 'en', 'domain': 'lexparency.org', 'display': 'English'},
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = [
+    BASE_DIR / 'lexhost' / 'assets' / 'static'
 ]
 
-DEAD_SIMPLE_REDIRECTS = {  # Legacy handling again
-    # '/eu/TFEU/': 'https://eur-lex.europa.eu/legal-content/DE/ALL/?uri=CELEX:11957E/TXT',
-    '/eu/Regulation_EU_640-2014/': '/eu/32014R0640/',
-    '/eu/wtf': '/eu/32013R0575/',
-    '/contact_us.php': HttpResponseGone('/contact_us.php')
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+
+SECRET_KEY = 'asdfsdf'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'lex.sqlite3',
+    }
 }
 
-DIAMONDS = {
-    '32016R0679': 'GDPR',
-    '32013R0575': 'CRR',
-}
-
-FOLLOW_DOMAINS = {
-    'alternativeassets.club'
-}
+WSGI_APPLICATION = 'lexhost.wsgi.application'

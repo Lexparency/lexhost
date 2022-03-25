@@ -1,39 +1,56 @@
 from functools import wraps
 
+from django.shortcuts import render
 from elasticsearch import NotFoundError
-from flask import Flask, render_template
-from werkzeug.exceptions import NotFound
 
-from views.standard_messages import standard_messages
+from django.http import Http404
 
+from lexhost.standard_messages import standard_messages
 
-def not_found(error):
-    return render_template('exceptions/404.html',
-                           title='404',
-                           messenger=standard_messages,
-                           message=str(error),
-                           url=standard_messages['lexparency_url']), 404
+base_context = {
+    'messenger': standard_messages,
+    'url': standard_messages['lexparency_url']
+}
 
 
-def removed(error):
-    return render_template('exceptions/410.html',
-                           title='content removed',
-                           messenger=standard_messages,
-                           message=str(error),
-                           url=standard_messages['lexparency_url']), 410
+def not_found(request, exception=None):
+    return render(request,
+                  'exceptions/404.html',
+                  context=dict(title='404', exception=exception, **base_context),
+                  status=404
+                  )
 
 
-def forbidden(error):
-    return render_template('exceptions/403.html',
-                           title='403',
-                           messenger=standard_messages,
-                           message=str(error),
-                           url=standard_messages['lexparency_url']), 403
+def forbidden(request, exception=None):
+    return render(request,
+                  'exceptions/403.html',
+                  context=dict(title='403', exception=exception, **base_context),
+                  status=403
+                  )
 
 
-def register_app(app: Flask):
-    for code, function in [(404, not_found), (410, removed), (403, forbidden)]:
-        app.errorhandler(code)(function)
+def bad_request(request, exception=None):
+    return render(request,
+                  'exceptions/400.html',
+                  context=dict(title='400', exception=exception, **base_context),
+                  status=400
+                  )
+
+
+def gone(request, exception=None):
+    return render(request,
+                  'exceptions/410.html',
+                  context=dict(title='410', exception=exception, **base_context),
+                  status=400
+                  )
+
+
+def internal_error(request, exception=None):
+    return render(request,
+                  'exceptions/500.html',
+                  context=dict(title='500', exception=exception, **base_context),
+                  status=500
+                  )
 
 
 def convert_exception(from_exc, to):
@@ -53,4 +70,4 @@ def convert_exception(from_exc, to):
     return _convert_exception
 
 
-handle_as_404 = convert_exception(NotFoundError, NotFound)
+handle_as_404 = convert_exception(NotFoundError, Http404)

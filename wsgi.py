@@ -1,11 +1,16 @@
-import sys
+"""
+WSGI config for lexhost project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
+"""
+
 import os
 
+from django.core.wsgi import get_wsgi_application
 
-def get_application():
-    sys.path.insert(0, os.path.dirname(__file__))
-    from app import create_app
-    return create_app()
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lexhost.settings')
 
-
-application = get_application()
+application = get_wsgi_application()

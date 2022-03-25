@@ -1,11 +1,11 @@
 from datetime import datetime
 import re
 
-from werkzeug.datastructures import MultiDict
-from werkzeug.urls import url_encode
+from django.http import QueryDict
+from django.utils.datastructures import MultiValueDict
 
 from legislative_act.searcher import Filter
-from settings import FILTER_TYPES
+from lexhost.settings import FILTER_TYPES
 
 ACT_TYPES = list(FILTER_TYPES.keys())
 year_pattern = re.compile(r'[0-9]{4}$')
@@ -17,7 +17,7 @@ class SearchForm(dict):
              'date_from', 'date_to', 'serial_number')
 
     @classmethod
-    def parse(cls, get_dict: MultiDict):
+    def parse(cls, get_dict: MultiValueDict):
         """ Converts the filter-values provided by the GET-request dict to
             python-variables instead of just strings.
         """
@@ -104,7 +104,7 @@ class SearchForm(dict):
         }
 
     def repaginator(self, pages, path):
-        qd = MultiDict()
+        qd = QueryDict(mutable=True)
         for key, values in self.items():
             if key not in self.slots:
                 continue
@@ -116,6 +116,6 @@ class SearchForm(dict):
         return [
             {'role': p[0],
              'page': p[1],
-             'href': '{}?{}&page={}'.format(path, url_encode(qd), str(p[1]))}
+             'href': '{}?{}&page={}'.format(path, qd.urlencode(), str(p[1]))}
             for p in pages
         ]

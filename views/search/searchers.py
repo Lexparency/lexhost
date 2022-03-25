@@ -1,13 +1,13 @@
-from flask import render_template
-from werkzeug.datastructures import MultiDict
-from werkzeug.exceptions import NotFound
+from django.http import Http404
+from django.shortcuts import render
+from django.utils.datastructures import MultiValueDict
 
 from legislative_act.provider import DocumentProvider
 from legislative_act.searcher import CorpusSearcher
-from views.exceptions import handle_as_404
+from ..exceptions import handle_as_404
 from .shortcuts import ShortCutter
 from .form import SearchForm
-from views.standard_messages import standard_messages
+from lexhost.standard_messages import standard_messages
 
 
 @handle_as_404
@@ -15,7 +15,7 @@ def search_document(path, domain, id_local, words, page, all_versions=False):
     document = DocumentProvider(domain, id_local)
     latest_version = document.latest_available
     if latest_version is None:
-        raise NotFound(f'/{domain}/{id_local}/ is not available.')
+        raise Http404(f'/{domain}/{id_local}/ is not available.')
     cover = document.get_cover(latest_version).flat_dict()
     result = document.search(words, page=page, all_versions=all_versions)
     if page == 1:
@@ -38,7 +38,7 @@ def search_document(path, domain, id_local, words, page, all_versions=False):
     return content
 
 
-def search_corpus(path: str, args: MultiDict):
+def search_corpus(path: str, args: MultiValueDict):
     # TODO: include filter on domain
     query = SearchForm.parse(args)
     if query is not None:
@@ -63,7 +63,7 @@ def search_corpus(path: str, args: MultiDict):
         result = None
         form = SearchForm.default()
         description = standard_messages['advanced_search']
-    content = {
+    context = {
         'messenger': standard_messages,
         'title': title,
         'description': description,
@@ -73,4 +73,4 @@ def search_corpus(path: str, args: MultiDict):
         'form': form,
         'filter_visibility': ''
     }
-    return render_template('search_corpus.html', **content)
+    return render(None, 'search_corpus.html', context=context)
