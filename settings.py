@@ -1,3 +1,4 @@
+import datetime
 import os
 import logging
 
@@ -17,6 +18,9 @@ CACHE_CONFIG = {
     'CACHE_TYPE': 'simple',
     'CACHE_DEFAULT_TIMEOUT': 30
 }
+
+FS_CACHE_DIR = os.path.join(BASE_DIR, 'CACHE')
+FS_CACHE_STALE_AFTER = datetime.timedelta(seconds=2)
 
 FORMAT = '%(levelname)s %(asctime)s %(module)s.%(funcName)s: %(message)s'
 

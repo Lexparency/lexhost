@@ -1,7 +1,10 @@
+from functools import partial
+
 from flask import Flask, request, render_template, redirect, Response, url_for
 from flask_caching import Cache
 from werkzeug.exceptions import NotFound, Gone
 import logging
+from cachier import cachier
 
 from index_admin import create_index_admin
 from utils import register_redirects
@@ -14,13 +17,19 @@ from views import exceptions
 from views.sitemapping import SiteMap
 
 from settings import DEBUG, FEATURED, LANGUAGE_DOMAIN, \
-    DEAD_SIMPLE_REDIRECTS, BOTAPI, CACHE_CONFIG
-
+    DEAD_SIMPLE_REDIRECTS, BOTAPI, CACHE_CONFIG, FS_CACHE_DIR, \
+    FS_CACHE_STALE_AFTER
 
 logger = logging.getLogger(__name__)
 
 diamonds = Diamonds()
 read = Read()
+fs_cache = partial(
+    cachier,
+    cache_dir=FS_CACHE_DIR,
+    stale_after=FS_CACHE_STALE_AFTER,
+    next_time=True
+)
 
 
 def create_app():
@@ -31,7 +40,7 @@ def create_app():
     register_redirects(app, DEAD_SIMPLE_REDIRECTS)
 
     @app.route('/')
-    @cache.cached()
+    @fs_cache()
     def landing():
         content = {
             'messenger': standard_messages,
@@ -57,7 +66,7 @@ def create_app():
         raise Gone(obsolete_document_path)
 
     @app.route('/sitemap.xml')
-    @cache.cached()
+    @fs_cache()
     def sitemap():
         r = Response(response=SiteMap.build('eu').dump().decode('ascii'),
                      status=200,

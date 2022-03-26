@@ -12,3 +12,4 @@ SPARQLWrapper == 1.8.5
 keepalive == 0.5
 jsonschema ==4.4.0
 requests ==2.27.1
+cachier == 1.5.4
