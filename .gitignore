@@ -1,4 +1,5 @@
 LOG/
+CACHE/
 venv/
 __pycache__/
 package-lock.json
