@@ -1,12 +1,12 @@
 {% extends "fragments/top_nav_base.html" %}
 
 {% block extra_navs %}
-  <button id="shareButton" class="w3-item w3-button w3-right">
+  <button id="githubButton" class="w3-item w3-button w3-right">
     <a href="https://github.com/Lexparency/" title="{{ messenger.github }}">
       <img width="35" height="35" src="/static/icons/github.svg" alt="{{ messenger.github }}">
     </a>
   </button>
-  <button id="githubButton" class="w3-item w3-button w3-right" title="{{ messenger.share }}">
+  <button id="shareButton" class="w3-item w3-button w3-right" title="{{ messenger.share }}">
     <img width="35" height="35" src="/static/icons/share-alt.svg" alt="{{ messenger.share }}">
   </button>
   <button id="languageButton" class="w3-item w3-button w3-right" title="{{ messenger.languages }}">
