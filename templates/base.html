@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="/static/css/custom.css">
     <!-- /build -->
 
-    <!-- build:include ../templates/fragments/ad_sence.html --><!-- /build -->
-
     <!--suppress CssUnusedSymbol -->
     <style>
       .lxp-definition-term::before,
@@ -44,9 +42,6 @@
    <!-- Google Page-Load test unfortunately complains that the CDNs for tippy and jquery have no cache information -->
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/tippy.all.min.js"></script>
-    <!-- build:include ../templates/fragments/cookies_consent.html -->
-      {% include "fragments/cookies_consent.html" %}
-    <!-- /build -->
     {% block script %}
     {% endblock %}
   </body>

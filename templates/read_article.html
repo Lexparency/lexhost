@@ -40,9 +40,6 @@
       </h1>
       {{ article.body|safe }}
     </div>
-    <div id="supportOptionsSmall" class="w3-hide-large w3-hide-medium" style="width:301px;height:251px">
-      {% include 'fragments/panel_bottom_small.html' %}
-    </div>
     {% include 'fragments/nationals.html' %}
   </div>
   <span id="permalink_to_this_p" style="display: none">{{ messenger.permalink_to_this_p }}</span>
@@ -58,7 +55,6 @@
   <!-- build:js inline ../static/js/document_search.min.js -->
   <script type="text/javascript" src="/static/js/document_search.js"></script>
   <!-- /build -->
-  <!-- build:include ../templates/fragments/hypothesis_js.html --><!-- /build -->
 {% endblock %}
 
 {% block on_load %}
