@@ -1,7 +1,7 @@
 from legislative_act import model as dm
 
 
-s = dm.Search().filter('term', doc_type='cover')
+s = dm.Search().filter("term", doc_type="cover")
 
 result = set()
 
@@ -14,8 +14,8 @@ for hit in s.scan():
         if ih == hit.abstract.id_local:
             result.add(hit.abstract.id_local)
 
-print('\n'.join(sorted(result)))
+print("\n".join(sorted(result)))
 
 
-if __name__ == '__main__':
-    print('Done')
+if __name__ == "__main__":
+    print("Done")

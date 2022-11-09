@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "lexhost"
+version = "1.0.0"
+description = "Lexparency Web-application"
+authors = ["martinheimsoth <martinheimsoth@gmx.de>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+lexref = "1.1"
+Flask = "2.0.3"
+Flask-Caching = "1.10.1"
+werkzeug = "2.0.3"
+Jinja2 = "3.0.3"
+rdflib = "4.2.2"
+elasticsearch-dsl = "7.4.0"
+elasticsearch = "7.14.1"
+lxml = "4.8.0"
+html5lib = "1.1"
+SPARQLWrapper = "1.8.5"
+keepalive = "0.5"
+jsonschema = "4.4.0"
+requests = "2.27.1"
+cachier = "1.5.4"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

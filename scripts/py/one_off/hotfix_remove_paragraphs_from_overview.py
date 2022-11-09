@@ -3,17 +3,17 @@ from collections import defaultdict
 from legislative_act import model as dm
 
 
-s = dm.Search().filter('term', doc_type='nationalreference')
+s = dm.Search().filter("term", doc_type="nationalreference")
 
 
 popables = defaultdict(list)
 deletables = set()
 
 for hit in s.scan():
-    if '§' not in hit.text:
+    if "§" not in hit.text:
         continue
     for k, target in enumerate(hit.references):
-        if target.count('-') == 1:
+        if target.count("-") == 1:
             popables[hit.meta.id].append(k)
     if len(hit.references) == len(popables[hit.meta.id]):
         popables.pop(hit.meta.id)

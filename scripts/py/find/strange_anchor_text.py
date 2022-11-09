@@ -8,14 +8,14 @@ from legislative_act import model as dm
 printed = set()
 
 
-for h in dm.Search().filter('term', doc_type='cover').scan():
-    celex = h.meta.id.split('-')[1]
+for h in dm.Search().filter("term", doc_type="cover").scan():
+    celex = h.meta.id.split("-")[1]
     if celex in printed:
         continue
     for ref in dm.Cover.iter_anchors():
         try:
             for a in h[ref]:
-                if 'uri=' in a['text']:
+                if "uri=" in a["text"]:
                     print(celex)
                     printed.add(celex)
         except KeyError:
@@ -24,5 +24,5 @@ for h in dm.Search().filter('term', doc_type='cover').scan():
             break
 
 
-if __name__ == '__main__':
-    print('Done')
+if __name__ == "__main__":
+    print("Done")

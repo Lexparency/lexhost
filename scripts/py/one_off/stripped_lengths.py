@@ -3,8 +3,11 @@ from legislative_act import model as dm
 
 MAXLEN = 1000000
 
-aids = [h.meta.id for h in dm.Search().filter('term', doc_type='article').scan()
-        if len(h.body.stripped) > 1000000]
+aids = [
+    h.meta.id
+    for h in dm.Search().filter("term", doc_type="article").scan()
+    if len(h.body.stripped) > 1000000
+]
 
 print(aids)
 
@@ -16,5 +19,5 @@ for aid in aids:
     sleep(15)
 
 
-if __name__ == '__main__':
-    print('Done')
+if __name__ == "__main__":
+    print("Done")

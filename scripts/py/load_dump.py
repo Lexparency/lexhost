@@ -27,5 +27,5 @@ elif os.path.isfile(argv[1]):
     load_single_dump(argv[1])
 
 
-if __name__ == '__main__':
-    print('Done')
+if __name__ == "__main__":
+    print("Done")

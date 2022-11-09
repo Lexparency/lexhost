@@ -18,9 +18,23 @@ from itertools import product
 import datetime
 
 from elasticsearch import ConnectionTimeout
-from elasticsearch_dsl import Document, Date, Boolean, Integer, Nested, \
-    analyzer, InnerDoc, Keyword, Text, Index, connections, MetaField, Object, \
-    Search, AttrList
+from elasticsearch_dsl import (
+    Document,
+    Date,
+    Boolean,
+    Integer,
+    Nested,
+    analyzer,
+    InnerDoc,
+    Keyword,
+    Text,
+    Index,
+    connections,
+    MetaField,
+    Object,
+    Search,
+    AttrList,
+)
 from elasticsearch_dsl.utils import ObjectBase
 from elasticsearch_dsl.document import IndexMeta
 
@@ -28,16 +42,16 @@ from legislative_act.utils.generics import get_today, retry
 from .es_settings import numbers, create_analysis
 from settings import LANG_2, DEFAULT_IRI
 
-connections.create_connection(hosts=['localhost'])
+connections.create_connection(hosts=["localhost"])
 
 language = LANG_2
-index_name = f'legex-{language}'
+index_name = f"legex-{language}"
 
 index = Index(index_name)
 
 index.settings(**numbers)
 
-zimple = analyzer('zimple', tokenizer="lowercase")
+zimple = analyzer("zimple", tokenizer="lowercase")
 
 language_analyzer = create_analysis(language)
 
@@ -55,17 +69,16 @@ analyzed_text = partial(
 class AutoInspector(ObjectBase):
     @classmethod
     def get_fields(cls):
-        return cls._doc_type.mapping.to_dict()['properties'].keys()
+        return cls._doc_type.mapping.to_dict()["properties"].keys()
 
 
 def art_sub_id(sub_id):
-    """ Checks whether the sub_id <sub_id> could come from an article. """
-    return sub_id not in ('COV', 'TOC', 'PRE') and not sub_id.startswith('DEF_')
+    """Checks whether the sub_id <sub_id> could come from an article."""
+    return sub_id not in ("COV", "TOC", "PRE") and not sub_id.startswith("DEF_")
 
 
 # noinspection PyRedeclaration
 class Document(Document):
-
     def as_dump(self):
         return {
             "_index": index_name,
@@ -77,19 +90,20 @@ class Document(Document):
     @classmethod
     @retry(ConnectionTimeout, 3, 10)
     def get(cls, *args, **kwargs) -> VersionsMap:
-        """ Just a pass-through for the retry on ConnectionTimeout """
+        """Just a pass-through for the retry on ConnectionTimeout"""
         return super().get(*args, **kwargs)
 
 
 class Anchor(InnerDoc):
-    """ For neatly displayed anchors on the sidebar.
-        Currently, related documents (e.g. (cites, cited_by, based_on, ...)
-        are displayed rather minimalistic, showing only the celex-id or some
-        self-constructed spoken ID. If such information is provided as
-        Anchor-instance, it can be displayed in html as follows:
-        <a href={url} title={title}>{text}</a>
+    """For neatly displayed anchors on the sidebar.
+    Currently, related documents (e.g. (cites, cited_by, based_on, ...)
+    are displayed rather minimalistic, showing only the celex-id or some
+    self-constructed spoken ID. If such information is provided as
+    Anchor-instance, it can be displayed in html as follows:
+    <a href={url} title={title}>{text}</a>
     """
-    changers = ('amended_by', 'corrected_by')
+
+    changers = ("amended_by", "corrected_by")
     text = Keyword(required=True)
     href = Keyword(required=True)
     title = Keyword()
@@ -105,6 +119,7 @@ class Abstract(InnerDoc, AutoInspector):
     of a legal expression.
     It is needed for search filter and to be displayed on the interface.
     """
+
     # (eli:based_on? lxp:...) Document domain, e.g. eu, de, de-nrw:
     domain = Keyword(required=True)
     # (eli:id_local? lxp:...) ID of the encompassing document. Previously celex
@@ -128,13 +143,13 @@ class Abstract(InnerDoc, AutoInspector):
     is_latest = Boolean(required=True)
 
     def __eq__(self, other):
-        """ For the incorporation of new document versions it is important
+        """For the incorporation of new document versions it is important
         that two corresponding articles are recognized as being different,
         not just because their abstract's version attribute differs.
         """
         if type(other) is not type(self):
             return False
-        for name in ('domain', 'id_local', 'type_document', 'serial_number'):
+        for name in ("domain", "id_local", "type_document", "serial_number"):
             if getattr(self, name) != getattr(other, name):
                 return False
         return True
@@ -150,12 +165,13 @@ class Twix(InnerDoc):
         - "dressed" for the versions including markup.
             For displaying on the article view etc..
     """
+
     stripped = analyzed_text()
     dressed = Text(index=False, store=True)
 
     def __eq__(self, other):
-        """ For now, we consider two Twixes to be equal
-            if their stripped versions are equal. """
+        """For now, we consider two Twixes to be equal
+        if their stripped versions are equal."""
         if type(other) is not Twix:
             return False
         return self.stripped == other.stripped
@@ -171,7 +187,7 @@ class Base(Document):
         return cls.__name__.lower()
 
     def __init__(self, **kwargs):
-        kwargs['doc_type'] = self.get_doc_type()
+        kwargs["doc_type"] = self.get_doc_type()
         super().__init__(**kwargs)
 
     @property
@@ -180,13 +196,13 @@ class Base(Document):
 
     @property
     def sub_id(self):
-        """ The ID convention is as follows:
+        """The ID convention is as follows:
         <domain>-<id_local>-<sub_id>-<version>
         """
-        return self.meta.id.split('-')[-2]
+        return self.meta.id.split("-")[-2]
 
     class Meta:
-        dynamic = MetaField('strict')
+        dynamic = MetaField("strict")
 
     @classmethod
     def _matches(cls, hit):
@@ -202,15 +218,15 @@ class Base(Document):
         def flatten(d: dict):
             for name, value in list(d.items()):
                 if type(value) is dict:
-                    if set(value.keys()) == {'stripped', 'dressed'}:
-                        d[name] = value['dressed']
-                    elif name == 'heading':
+                    if set(value.keys()) == {"stripped", "dressed"}:
+                        d[name] = value["dressed"]
+                    elif name == "heading":
                         for key in list(value.keys()):
                             if key in d:
                                 break
                             d[key] = value.pop(key)
                         else:  # no break occurred
-                            del d['heading']
+                            del d["heading"]
                     else:
                         flatten(value)
                 elif type(value) is list:
@@ -220,7 +236,7 @@ class Base(Document):
 
         result = self.to_dict()
         flatten(result)
-        abstract = result.pop('abstract')
+        abstract = result.pop("abstract")
         result.update(abstract)
         return result
 
@@ -232,14 +248,15 @@ class VersionAvailability(InnerDoc):
     date_received = Date(required=True)
 
     def __init__(self, **kwargs):
-        if 'date_received' not in kwargs:
-            kwargs['date_received'] = get_today()
+        if "date_received" not in kwargs:
+            kwargs["date_received"] = get_today()
         super().__init__(**kwargs)
 
 
 class ExposedAndHiddenVersions(InnerDoc):
-    """ exposed_versions should always include hidden_version
-        as first item -- cf. usage in VersionsMap.as_mapping. """
+    """exposed_versions should always include hidden_version
+    as first item -- cf. usage in VersionsMap.as_mapping."""
+
     sub_id = Keyword(required=True)
     hidden_version = Keyword(required=True)
     # versions list for which hidden_version serves as resource.
@@ -268,13 +285,13 @@ class VersionsMap(Document):
 
     def datify(self):
         for va in self.availabilities:
-            for dt in ('document', 'received'):
+            for dt in ("document", "received"):
                 try:
-                    value = getattr(va, f'date_{dt}').date()
+                    value = getattr(va, f"date_{dt}").date()
                 except AttributeError:
                     pass
                 else:
-                    setattr(va, f'date_{dt}', value)
+                    setattr(va, f"date_{dt}", value)
         return self  # nice for chaining
 
     @classmethod
@@ -285,13 +302,13 @@ class VersionsMap(Document):
 
     @classmethod
     def get(cls, *args, **kwargs) -> VersionsMap:
-        """ No idea, when ES converts to datetime and when not. """
+        """No idea, when ES converts to datetime and when not."""
         result = super().get(*args, **kwargs)
         result.datify()
         return result
 
     def __init__(self, **kwargs):
-        kwargs['doc_type'] = 'versionsmap'
+        kwargs["doc_type"] = "versionsmap"
         super().__init__(**kwargs)
 
     def __hash__(self):
@@ -327,11 +344,11 @@ class Cover(Base, AutoInspector):
     """
     Exemplary values for id: 32013R0575, TEU, TFEU, CETA
     """
-    source_iri = Keyword(  # Document landing page of the source provider
-        required=True)
+
+    source_iri = Keyword(required=True)  # Document landing page of the source provider
     source_url = Keyword(  # Eurlex-URL from where the present document
-        required=True,  # has been downloaded
-        index=False)
+        required=True, index=False  # has been downloaded
+    )
     # (lxp:...) title without amendment- and repealing- information
     title_essence = analyzed_text()
     # (lxp:...) E.g. "Capital Requirements Regulation" for Regulation EU 57/2013
@@ -349,9 +366,7 @@ class Cover(Base, AutoInspector):
     # (eli:passed_by) e.g. "European Parliament":
     passed_by = Keyword(multi=True)
     based_on = Nested(Anchor)  # -> (eli:based_on)
-    is_about = Text(  # (eli:is_about)
-        analyzer=language_analyzer,
-        multi=True)
+    is_about = Text(analyzer=language_analyzer, multi=True)  # (eli:is_about)
     # -> (eli:amends) List of Document IDs to be repealed:
     repealed_by = Nested(Anchor)
     corrected_by = Nested(Anchor)
@@ -377,21 +392,23 @@ class Cover(Base, AutoInspector):
     @classmethod
     @lru_cache()
     def forth_back_anchors(cls):
-        """ Dynamically builds back and forth mapping of related anchor-attributes:
-            I.e. {'amdends': 'amended_by', 'amended_by': 'amdends', 'cites': ...}
+        """Dynamically builds back and forth mapping of related anchor-attributes:
+        I.e. {'amdends': 'amended_by', 'amended_by': 'amdends', 'cites': ...}
         """
 
         def is_pair(f, b):
-            if not f.endswith('s'):
+            if not f.endswith("s"):
                 return False
-            if b.startswith(f[:-1]) and b.endswith('d_by'):
+            if b.startswith(f[:-1]) and b.endswith("d_by"):
                 return True
             return False
 
         anchors = list(cls.iter_anchors())
-        result = {forth: back
-                  for forth, back in product(anchors, anchors)
-                  if forth > back and is_pair(forth, back)}
+        result = {
+            forth: back
+            for forth, back in product(anchors, anchors)
+            if forth > back and is_pair(forth, back)
+        }
         result.update({back: forth for forth, back in list(result.items())})
         return result
 
@@ -403,18 +420,22 @@ class Cover(Base, AutoInspector):
         for ref_name in fba.keys():
             anchors = getattr(self, ref_name)
             for anchor in anchors:
-                if not anchor.href.startswith(f'{DEFAULT_IRI}/'):
+                if not anchor.href.startswith(f"{DEFAULT_IRI}/"):
                     continue
-                rel_ref = anchor.href.replace(DEFAULT_IRI, '').strip('/')
-                if '/' not in rel_ref:
+                rel_ref = anchor.href.replace(DEFAULT_IRI, "").strip("/")
+                if "/" not in rel_ref:
                     continue
-                domain, id_local, *_ = rel_ref.split('/')
+                domain, id_local, *_ = rel_ref.split("/")
                 if domain != self.abstract.domain:
                     continue
-                for hit in Search().filter('term', doc_type='cover') \
-                        .filter('term', abstract__is_latest=True) \
-                        .filter('term', abstract__id_local=id_local) \
-                        .filter('term', abstract__domain=domain).scan():
+                for hit in (
+                    Search()
+                    .filter("term", doc_type="cover")
+                    .filter("term", abstract__is_latest=True)
+                    .filter("term", abstract__id_local=id_local)
+                    .filter("term", abstract__domain=domain)
+                    .scan()
+                ):
                     backs = set(a.href for a in getattr(hit, fba[ref_name], []))
                     if ia.href not in backs:
                         c = cls.get(hit.meta.id)
@@ -423,27 +444,28 @@ class Cover(Base, AutoInspector):
 
     def as_anchor(self) -> Anchor:
         return Anchor(
-            href=f'{DEFAULT_IRI}/{self.abstract.domain}/{self.abstract.id_local}/',
+            href=f"{DEFAULT_IRI}/{self.abstract.domain}/{self.abstract.id_local}/",
             text=self.pop_acronym or self.id_human or self.abstract.id_local,
-            title=self.pop_title or self.title_essence or self.title
+            title=self.pop_title or self.title_essence or self.title,
         )
 
     @classmethod
     def date_fields(cls):
         return [
-                   name for name in cls.get_fields()
-                   if type(cls._doc_type.mapping.properties[name]) is Date
-               ] + ['date_publication']
+            name
+            for name in cls.get_fields()
+            if type(cls._doc_type.mapping.properties[name]) is Date
+        ] + ["date_publication"]
 
     def uniquify_referrals(self):
-        """ Still trouble with: 32004R0726-EN: reference to 32009R0470 """
+        """Still trouble with: 32004R0726-EN: reference to 32009R0470"""
         changed = False
         for referral in self.iter_anchors():
             changed = changed or uniquify_list(getattr(self, referral, []))
         return changed
 
     def save(self, **kwargs):
-        assert getattr(self, 'language', None) in (None, language.upper())
+        assert getattr(self, "language", None) in (None, language.upper())
         self.uniquify_referrals()
         return super().save(**kwargs)
 
@@ -471,15 +493,17 @@ class Cover(Base, AutoInspector):
         result = super().flat_dict()
         if not crumble:
             return result
-        result['referrers'] = []
+        result["referrers"] = []
         for name in self.iter_anchors():
             if name not in result:
                 continue
-            result['referrers'].append({
-                'name': name,
-                'changer': name in Anchor.changers,
-                'anchors': result.pop(name)
-            })
+            result["referrers"].append(
+                {
+                    "name": name,
+                    "changer": name in Anchor.changers,
+                    "anchors": result.pop(name),
+                }
+            )
         return result
 
 
@@ -533,12 +557,13 @@ class ContentsTable(Base):
 
 @index.document
 class NationalReference(Document):
-    """ National legislations that refer to present content """
+    """National legislations that refer to present content"""
+
     doc_type = Keyword(required=True)
-    country_name = Keyword(required=True)      # e.g. Deutschland
-    text = Keyword(required=True)              # e.g. §1 BGB
+    country_name = Keyword(required=True)  # e.g. Deutschland
+    text = Keyword(required=True)  # e.g. §1 BGB
     title = analyzed_text()
-    transposes = Keyword(multi=True)           # e.g. ['eu-32013L0036']
+    transposes = Keyword(multi=True)  # e.g. ['eu-32013L0036']
     urls = Keyword(required=True, multi=True)
     references = Keyword(required=True, multi=True)
     # e.g. ['eu-32013R0575-ART_92', 'eu-32013R0575', 'eu-32016R0679']
@@ -549,7 +574,7 @@ class NationalReference(Document):
         return cls.__name__.lower()
 
     def __init__(self, **kwargs):
-        kwargs['doc_type'] = self.get_doc_type()
+        kwargs["doc_type"] = self.get_doc_type()
         super().__init__(**kwargs)
 
 
@@ -565,4 +590,5 @@ def delete(id_):
 content_document_types = [
     cls.__name__.lower()
     for cls in [eval(cl) for cl in dir() if type(eval(cl)) is IndexMeta]
-    if issubclass(cls, Base) and cls is not Base]
+    if issubclass(cls, Base) and cls is not Base
+]

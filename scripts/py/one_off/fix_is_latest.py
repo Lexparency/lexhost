@@ -9,7 +9,7 @@ from elasticsearch import NotFoundError
 from legislative_act import model as dm
 
 s = dm.Search()
-s = s.filter('term', doc_type='versionsmap')
+s = s.filter("term", doc_type="versionsmap")
 
 id_2_is_latest = {}
 for hit in s.scan():
@@ -19,19 +19,22 @@ for hit in s.scan():
     latest_available = availables[-1]
     s2v2vs = defaultdict(dict)
     for part in hit.exposed_and_hidden:
-        id_2_is_latest[f"{hit.meta.id}-{part.sub_id}-{part.hidden_version}"] = \
+        id_2_is_latest[f"{hit.meta.id}-{part.sub_id}-{part.hidden_version}"] = (
             latest_available in part.exposed_versions
+        )
 
 
-def get_doc(id_) -> Union[dm.Article, dm.Cover, dm.ContentsTable, dm.Definition, dm.Preamble]:
-    sub_id = id_.split('-')[2]
-    if sub_id.startswith('DEF'):
+def get_doc(
+    id_,
+) -> Union[dm.Article, dm.Cover, dm.ContentsTable, dm.Definition, dm.Preamble]:
+    sub_id = id_.split("-")[2]
+    if sub_id.startswith("DEF"):
         return dm.Definition.get(id_)
-    if sub_id == 'TOC':
+    if sub_id == "TOC":
         return dm.ContentsTable.get(id_)
-    if sub_id == 'COV':
+    if sub_id == "COV":
         return dm.Cover.get(id_)
-    if sub_id == 'PRE':
+    if sub_id == "PRE":
         return dm.Preamble.get(id_)
     return dm.Article.get(id_)
 
