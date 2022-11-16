@@ -14,10 +14,7 @@ class DummyRequest:
 
 class TestRead(TestCase):
     DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
-    DOC_NAMES = (
-        "32013R0575",
-        # '32002R0006', '32009L0065', '32016R0679'
-    )
+    DOC_NAMES = ("32013R0575", "32002R0006", "32009L0065", "32016R0679")
 
     @classmethod
     def setUpClass(cls):

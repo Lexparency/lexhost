@@ -1,5 +1,5 @@
 from lxml import etree as et
-from rdflib import Graph
+from rdflib import Graph, URIRef, Namespace, RDF, Literal, XSD
 import re
 from collections import defaultdict
 import logging
@@ -259,8 +259,8 @@ class DocumentReceiver(DocumentVersion):
 class LexGraph(Graph):
 
     custom_namespace = {
-        "eli": "http://data.europa.eu/eli/ontology#",
-        "lxp": "http://lexparency.org/ontology#",
+        "eli": Namespace("http://data.europa.eu/eli/ontology#"),
+        "lxp": Namespace("http://lexparency.org/ontology#"),
     }
 
     referral_types = list(dm.Cover.iter_anchors())
@@ -274,40 +274,72 @@ class LexGraph(Graph):
         super().__init__()
         for pair in self.custom_namespace:
             self.bind(*pair)
-        self.parse(
-            data=et.tostring(document, encoding="unicode", method="xml"),
-            # The actual ID is not known at the moment of parsing. And is not needed.
-            publicID=DEFAULT_IRI,
-            format="rdfa",
+        self._refs = set()
+        self._parse(document)
+
+    def add_ref(self, ref: str):
+        if ref.startswith("/"):
+            ref = DEFAULT_IRI + ref
+        ref = URIRef(ref)
+        if ref not in self._refs:
+            self._refs.add(ref)
+            self.add((ref, RDF.type, self.custom_namespace["eli"].Work))
+        return ref
+
+    def _parse(self, document: et.ElementBase):
+        this = self.add_ref(DEFAULT_IRI)
+        for meta in document.xpath(".//meta[@property] | .//span[@property]"):
+            attribs = meta.attrib
+            namespace, verb = attribs["property"].split(":")
+            predicate = self.custom_namespace[namespace][verb]
+            if attribs.get("datatype", "").startswith("xsd:"):
+                datatype = attribs["datatype"].split(":", 1)[1]
+                value = Literal(attribs["content"], datatype=XSD[datatype])
+            elif attribs.get("lang"):
+                value = Literal(attribs["content"], lang=attribs["lang"])
+            elif "resource" in attribs:
+                value = self.add_ref(attribs["resource"])
+            else:
+                value = Literal(attribs["content"])
+            if "about" in attribs:
+                subject = self.add_ref(attribs["about"])
+            else:
+                subject = this
+            self.add((subject, predicate, value))
+
+    @property
+    def query_prefix(self):
+        return "\n".join(
+            f"PREFIX {key}: <{value}>"
+            for key, value in self.custom_namespace.items()
         )
+
+    def query(self, query, *args, **kwargs):
+        return super().query(self.query_prefix + "\n" + query, *args, **kwargs)
 
     @property
     def date_document(self):
         result = self.query(
+            f"""
+                SELECT ?o
+                WHERE {{
+                    <{DEFAULT_IRI}> eli:date_document ?o .
+                    FILTER(isLiteral(?o))
+                }}
             """
-            SELECT ?o
-            WHERE {{
-                <{this}> eli:date_document ?o .
-                FILTER(isLiteral(?o))
-            }}
-        """.format(
-                this=DEFAULT_IRI
-            )
         )
         for (o,) in result:
             return o.toPython()
 
     def plain_predicates(self) -> dict:
         result = self.query(
+            f"""
+                SELECT ?p ?o
+                WHERE {{
+                    <{DEFAULT_IRI}> ?p ?o .
+                    FILTER(isLiteral(?o))
+                }}
             """
-            SELECT ?p ?o
-            WHERE {{
-                <{this}> ?p ?o .
-                FILTER(isLiteral(?o))
-            }}
-        """.format(
-                this=DEFAULT_IRI
-            )
         )
         outcome = defaultdict(list)
         for p, o in result:
@@ -328,18 +360,18 @@ class LexGraph(Graph):
         for referral_type in self.referral_types:
             query_result = self.query(
                 f"""
-                SELECT ?href ?title ?text ?v
-                WHERE {{
-                    <{DEFAULT_IRI}> eli:{referral_type} ?href .
-                    ?href lxp:id_human ?text .
-                    OPTIONAL {{
-                        ?href eli:title ?title .
+                    SELECT ?href ?title ?text ?v
+                    WHERE {{
+                        <{DEFAULT_IRI}> eli:{referral_type} ?href .
+                        ?href lxp:id_human ?text .
+                        OPTIONAL {{
+                            ?href eli:title ?title .
+                        }}
+                        OPTIONAL {{
+                            ?v lxp:version_implements ?href .
+                        }}
                     }}
-                    OPTIONAL {{
-                        ?v lxp:version_implements ?href .
-                    }}
-                }}
-            """
+                """
             )
             if not query_result:
                 continue
