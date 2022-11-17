@@ -40,9 +40,9 @@ from elasticsearch_dsl.document import IndexMeta
 
 from legislative_act.utils.generics import get_today, retry
 from .es_settings import numbers, create_analysis
-from settings import LANG_2, DEFAULT_IRI
+from settings import LANG_2, DEFAULT_IRI, ES_CONNECTION
 
-connections.create_connection(hosts=["localhost"])
+connections.create_connection(hosts=[ES_CONNECTION])
 
 language = LANG_2
 index_name = f"legex-{language}"

@@ -6,7 +6,7 @@ from elasticsearch_dsl import token_filter, analyzer
 
 __all__ = ["numbers", "create_analysis"]
 
-numbers = {"number_of_shards": 5, "number_of_replicas": 2}
+numbers = {"number_of_shards": 5, "number_of_replicas": 1}
 
 
 StopStem = namedtuple("StopStem", ["stop", "stem"])
