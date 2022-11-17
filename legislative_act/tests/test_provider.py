@@ -1,5 +1,8 @@
 import os
+from datetime import date
 from unittest import TestCase, main
+
+from bs4 import BeautifulSoup
 from lxml import etree as et
 
 from legislative_act import model as dm
@@ -33,20 +36,46 @@ class TestRead(TestCase):
         print(recitals)
 
     def test_read(self):
-        dp = DocumentProvider('eu', '32016R0679')
-        print(dp.get_article('ART_1', 'latest').flat_dict())
+        dp = DocumentProvider("eu", "32016R0679")
+        article = dp.get_article("ART_1", "initial").flat_dict()
+        self.assertSetEqual(
+            {
+                "doc_type", "body", "score_multiplier", "ordinate", "title",
+                "serial_number", "version", "date_publication", "type_document",
+                "domain", "in_force", "id_local", "is_latest"
+            },
+            set(article.keys())
+        )
+        self.assertTrue(
+            "This Regulation lays down rules relating to" in article["body"]
+        )
 
     def test_versions_availability(self):
-        dp = DocumentProvider('eu', '32016R0679')
-        print(dp.versions_availability)
+        dp = DocumentProvider("eu", "32016R0679")
+        self.assertEqual(
+            [a.to_dict() for a in dp.history.availabilities],
+            [
+                {
+                    "date_received": date.today(),
+                    "version": "initial",
+                    "date_document": date(2016, 4, 27),
+                    "available": True
+                }
+            ]
+        )
 
     def test_render_preamble(self):
-        # TODO: compare with data/32016R0679/rendered_preamble.htm
-        dp = DocumentProvider('eu', '32016R0679')
-        print(et.tostring(dp.render_preamble_body(dm.Preamble.get(
-            'eu-32016R0679'
-        )),
-                          encoding='unicode', pretty_print=True))
+        rendered = os.path.join(
+            self.DATA_PATH, "32016R0679_rendered_preamble.htm"
+        )
+        with open(rendered, encoding="utf-8") as f:
+            expected = f.read()
+        dp = DocumentProvider("eu", "32016R0679")
+        inner = dp.get_article("PRE", "initial").body.dressed
+        actual = BeautifulSoup(
+            f"<article>{inner}</article>", features="html.parser"
+        ).prettify(formatter="html")
+        self.assertEqual(expected, actual)
 
 
 if __name__ == "__main__":

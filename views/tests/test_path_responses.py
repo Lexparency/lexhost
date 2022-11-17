@@ -89,11 +89,10 @@ class TestViews(ViewsTester):
         self.path2snippet = {i["path"]: i["snippet"] for i in data["path_2_snippet"]}
         with open(os.path.join(DATA_PATH, "dbmap.json"), encoding="utf-8") as f:
             self.dbmap = json.load(f)
-        self.dbmap["date"] = date.today().strftime("%Y-%m-%d")
+        today_ts = date.today().strftime("%Y-%m-%d")
+        self.dbmap["date"] = today_ts
         with open(os.path.join(DATA_PATH, "sitemap.xml"), encoding="utf-8") as f:
-            self.expected_sitemap = f.read().replace(
-                "2020-02-16", date.today().strftime("%Y-%m-%d")
-            )
+            self.expected_sitemap = f.read().replace("2020-02-16", today_ts)
 
     def test_redirects(self):
         for entry_url, expected_url, status_code in url_to_redirect:
@@ -144,12 +143,14 @@ class TestViews(ViewsTester):
 
     def test_dbmap(self):
         self.assertEqual(
-            self.dbmap, json.loads(self.client.get(f"/{BOTAPI}/dbmap.json").data)
+            self.dbmap,
+            json.loads(self.client.get(f"/{BOTAPI}/dbmap.json").data)
         )
 
     def test_sitemap(self):
         self.assertEqual(
-            self.expected_sitemap, self.client.get("/sitemap.xml").data.decode("utf-8")
+            self.expected_sitemap,
+            self.client.get("/sitemap.xml").data.decode("utf-8"),
         )
 
     def test_domain_to_landing(self):
