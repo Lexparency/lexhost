@@ -1,17 +1,17 @@
 lexref == 1.1
-Flask ==2.0.3
-Flask-Caching == 1.10.1
-werkzeug ==2.0.3
-Jinja2 ==3.0.3
+Flask ==2.2.2
+Flask-Caching ==2.0.1
+werkzeug ==2.2.2
+Jinja2 ==3.1.2
 rdflib ==6.2.0
 elasticsearch-dsl == 7.4.0
 elasticsearch == 7.14.1
-lxml ==4.8.0
+lxml ==4.9.1
 html5lib == 1.1
-SPARQLWrapper == 1.8.5
+SPARQLWrapper ==2.0.0
 keepalive == 0.5
-jsonschema ==4.4.0
-requests ==2.27.1
+jsonschema ==4.17.0
+requests ==2.28.1
 cachier == 1.5.4
 # dev requirements
-beautifulsoup4==4.10.0
+beautifulsoup4==4.11.1
