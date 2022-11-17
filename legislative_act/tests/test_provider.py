@@ -3,7 +3,6 @@ from datetime import date
 from unittest import TestCase, main
 
 from bs4 import BeautifulSoup
-from lxml import etree as et
 
 from legislative_act import model as dm
 from legislative_act.receiver import DocumentReceiver
@@ -29,11 +28,6 @@ class TestRead(TestCase):
     @classmethod
     def tearDownClass(cls):
         dm.index.delete()
-
-    def test_recitals(self):
-        dp = DocumentProvider('eu', '32013R0575')
-        recitals = dp.get_article('PRE', 'initial')
-        print(recitals)
 
     def test_read(self):
         dp = DocumentProvider("eu", "32016R0679")
