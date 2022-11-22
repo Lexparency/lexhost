@@ -32,7 +32,10 @@ logger = logging.getLogger(__name__)
 diamonds = Diamonds()
 read = Read()
 fs_cache = partial(
-    cachier, cache_dir=FS_CACHE_DIR, stale_after=FS_CACHE_STALE_AFTER, next_time=True
+    cachier,
+    cache_dir=FS_CACHE_DIR,
+    stale_after=FS_CACHE_STALE_AFTER,
+    next_time=not DEBUG,
 )
 
 
