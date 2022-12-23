@@ -1,4 +1,5 @@
-﻿from settings import LANG_2, INTERNET_DOMAIN
+﻿# coding=utf-8
+from settings import LANG_2, INTERNET_DOMAIN
 
 
 eurlex_url = "https://eur-lex.europa.eu/"
@@ -70,7 +71,7 @@ _standard_messages = {
         "this_is_not_yet_in_force": "Esta ley todavía no está en vigor.",
         "not_consolidated": "no consolidado",
         "consolidated": "consolidado",
-        "this_is_latest": "Consolidada y reciente",
+        "this_is_latest": "Versión consolidada más reciente provista por Eur-Lex.",
         "this_is_upcoming": "Esta versión entrará en vigor en el futuro.",
         "article_footer": """Contenido obtenido de la © <a href='{eurlex}'>Unión Europea</a>.
         Proporcionado de parte de <a href='{lexp}'>{this_domain}</a>.""".format(
@@ -199,7 +200,7 @@ _standard_messages = {
         "this_is_not_yet_in_force": "This document is not yet in force.",
         "not_consolidated": "not consolidated",
         "consolidated": "consolidated",
-        "this_is_latest": "Latest consolidated version",
+        "this_is_latest": "Latest consolidated version provided by Eur-Lex",
         "this_is_upcoming": "This version is not yet applicable.",
         "article_footer": """Content gratefully obtained from the © <a href='{eurlex}'>European Union</a>.
         Brought to you by <a href='{lexp}'>{this_domain}</a>.""".format(
@@ -334,7 +335,7 @@ _standard_messages = {
         "this_is_not_yet_in_force": "Dieses Gesetz ist noch nicht in kraft.",
         "not_consolidated": "Nicht konsolidiert",
         "consolidated": "Konsolidiert",
-        "this_is_latest": "Aktuelle konsolidierte Version",
+        "this_is_latest": "Aktuellste von Eur-Lex verfügbare Konsolidierte Fassung",
         "this_is_upcoming": "Diese Version ist erst in Zukunft gültig.",
         "article_footer": "Inhalte dankend erhalten von der ©<a href='{eurlex_url}'>Europäischen Union</a>. "
         "Zur Verfügung gestellt von <a href='{lexparency_url}'>{this_domain}</a>.".format(
