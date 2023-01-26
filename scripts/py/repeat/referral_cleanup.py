@@ -1,3 +1,4 @@
+# coding=utf-8
 from functools import partial
 from time import sleep
 
@@ -60,7 +61,7 @@ class CoverCorrector:
                     or zur_2_none(getattr(h, "title_essence", None))
                     or getattr(h, "title", None),
                 }
-            except IndexError:
+            except (IndexError, ValueError):
                 continue
         for key, value in list(a_texts.items()):
             a_texts[f"{DEFAULT_IRI}/eu/{key}/"] = value
