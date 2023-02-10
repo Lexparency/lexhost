@@ -6,7 +6,7 @@ from datetime import datetime, date
 from elasticsearch_dsl import Q
 from jsonschema import validate
 from lxml import etree as et
-from requests import get
+from lexref import Reflector
 
 from legislative_act.history import DocumentHistory, DocumentVersion
 from legislative_act.model import Search, Article
@@ -38,21 +38,7 @@ def extract_amends(in_text):
     m = amendment_to.match(in_text)
     if m is None:
         return
-    r = get(
-        "https://reflector.lexparency.org/reflect",
-        headers={"Content-type": "application/json"},
-        data=json.dumps(
-            {
-                "language": LANG_2.upper(),
-                "output_format": "annotate",
-                "input_format": "plain",
-                "texts": [in_text],
-            }
-        ),
-    )
-    if r.status_code != 200:
-        return
-    d = json.loads(r.content)
+    d = Reflector(LANG_2.upper(), "annotate")(in_text)
     try:
         return d["result"][0]["annotate"][0]["references"][0]["href"]
     except (KeyError, IndexError):
