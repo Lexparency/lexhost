@@ -40,7 +40,7 @@ def extract_amends(in_text):
         return
     d = Reflector(LANG_2.upper(), "annotate")(in_text)
     try:
-        return d["result"][0]["annotate"][0]["references"][0]["href"]
+        return d[0]["references"][0]["href"]
     except (KeyError, IndexError):
         return
 
